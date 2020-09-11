@@ -1,0 +1,227 @@
+.slider {
+  /* default is width 400 and margin 10 */
+	width: 400;
+	margin: 10px;
+	position: relative;
+}
+
+p.SkillControl{
+	position: relative;
+	bottom: 850px;
+}
+
+p.Q1{
+	position: relative;
+	bottom: 800px;
+}
+
+p.Q2{
+	position: relative;
+	bottom: 800px;
+}
+
+.showbutton{
+	position: relative;
+	bottom: 800px;
+}
+
+label{
+	position: relative;
+	bottom: 800px;
+}
+
+#TopImage{
+	width: 50px;
+	position: relative;
+	bottom: 580px;
+	right: 240px;
+}
+
+#JungleImage{
+	width: 50px;
+	position: relative;
+	bottom: 650px;
+	right: 120px;
+}
+
+#MidImage{
+	width: 50px;
+	position: relative;
+	bottom: 720px;
+}
+
+#BotImage{
+	width: 50px;
+	position: relative;
+	bottom: 790px;
+	left: 120px;
+}
+
+#SupportImage{
+	width: 50px;
+	position: relative;
+	bottom: 860px;
+	left: 240px;
+}
+
+#Blue1Image{
+	width: 80px;
+	position: relative;
+	top: 20px;
+	left: 60px;
+}
+
+p.Blue1Image{
+	width: 80px;
+	position: relative;
+}
+
+#Blue2Image{
+	width: 80px;
+	position: relative;
+	bottom: 30px;
+	left: 120px;
+}
+
+p.Blue2Image{
+	width: 80px;
+	position: relative;
+}
+
+#Blue3Image{
+	width: 80px;
+	position: relative;
+	left: 180px;
+	bottom: 80px;
+}
+
+p.Blue3Image{
+	width: 80px;
+	position: relative;
+}
+
+#Blue4Image{
+	width: 80px;
+	position: relative;
+	left: 240px;
+	bottom: 130px;
+}
+
+p.Blue4Image{
+	width: 80px;
+	position: relative;
+}
+
+#Blue5Image{
+	width: 80px;
+	position: relative;
+	left: 300px;
+	bottom: 180px;
+}
+
+p.Blue5Image{
+	width: 80px;
+	position: relative;
+}
+
+
+p.Blue1Name{
+	position: relative;
+	right: 240px;
+	bottom: 489px;
+}
+
+p.Blue2Name{
+	position: relative;
+	right: 120px;
+	bottom: 532px;
+}
+
+p.Blue3Name{
+	position: relative;
+	bottom: 575px;
+}
+
+p.Blue4Name{
+	position: relative;
+	left: 120px;
+	bottom: 618px;
+}
+
+p.Blue5Name{
+	position: relative;
+	left: 240px;
+	bottom: 661px;
+}
+
+
+p.hidden1{
+	position: relative;
+	bottom: 800px;
+}
+
+p.hidden2{
+	position: relative;
+	bottom: 800px;
+}
+
+p.hidden3{
+	position: relative;
+	bottom: 800px;
+}
+
+table#multi_slider_table_Blue{
+	position: relative;
+	bottom: 800px;
+}
+
+table#multi_slider_table_Speaker{
+	position: relative;
+	bottom: 800px;
+}
+
+/*table#multi_slider_table_Red{
+	position: relative;
+	top: 10px;
+}*/
+
+button.hidden3{
+	position: relative;
+	bottom: 800px;
+}
+
+button.hidden2{
+	position: relative;
+	bottom: 800px;
+}
+
+button.hidden1{
+	position: relative;
+	bottom: 800px;
+}
+
+p.err_radio1{
+	position: relative;
+	bottom: 800px;
+}
+
+p.err_radio2{
+	position: relative;
+	bottom: 800px;
+}
+
+div.err_slider{
+	position: relative;
+	bottom: 800px;
+	display: block;
+}
+
+p.level_exp{
+	position: relative;
+	bottom: 20px;
+}
+
+p.ChampFam{
+	position: relative;
+	bottom: 800px;
+}

@@ -1,0 +1,240 @@
+<html>
+
+<head>
+    <title>League of Legends Experiment</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <script src="../_shared/js/jquery.csv.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="../_shared/js/exp-V2.js"></script>
+    <script src="../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="js/mmturkey.js"></script>
+<!--     <script src="../_shared/js/mmturkey.js "></script> -->
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+    <script src="js/TeamGenerator.js"></script>
+
+    <!--CSS-->
+    <link href="../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/LoL.js"></script>
+
+</head>
+        	    <script>
+    	    	$(".hidden2").hide();
+    	    </script>
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+    <div class="slide" id="i0" >
+
+    <img src="../_shared/images/sarneckalogo.png" alt="UCI Sarnecka Lab" id="cocologo"></img>
+    <p id="cocolab">UC-Irvine Sarnecka Lab</p>
+    <p id="instruct-text">You will be shown some League of Legends team compositions and asked to evaluate how the subsequent game would play out. The task should take approximately 20 minutes. Please pay attention, thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">Legal information: By answering the following questions, you are participating in a study being performed by scientists in the UC Irvine Department of Cognitive Sciences. If you have questions about this research, please contact Jeff Coon at <a href="mailto://jcoon1@uci.edu">jcoon1@uci.edu</a> or Barbara Sarnecka, at sarnecka@uci.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences.</p>
+
+  </div>
+
+  <div class="slide" id="instructions">
+    <h3>Instructions</h3>
+    <p>This experiment is still being developed. It is currently set to produce 20 compositions.</p>
+
+    <p>If you have completed a previous version of this experiment, you are welcome to take this version of the experiment. However, <i>please only do this version once.</i> We are now looking at how different people interpret the same compositions. Taking the experiment multiple times will lead us to incorrectly assume different people agree on their responses.</p>
+<!--     <p>Please note that this task was originally designed for young children. For comparison purposes, the wording here is the same. </p> -->
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+  <div class="slide" id="main_questions">
+
+        <p class ="Blue1Image"> <span id = "Blue1Image"></span></p>
+        <p class ="Blue2Image"> <span id = "Blue2Image"></span></p>
+        <p class ="Blue3Image"> <span id = "Blue3Image"></span></p>
+        <p class ="Blue4Image"> <span id = "Blue4Image"></span></p>
+        <p class ="Blue5Image"> <span id = "Blue5Image"></span></p>
+
+        <p class = "Blue1Name"> <span class = "Blue1Name"></span></p>
+        <p class = "Blue2Name"> <span class = "Blue2Name"></span></p>
+        <p class = "Blue3Name"> <span class = "Blue3Name"></span></p>
+        <p class = "Blue4Name"> <span class = "Blue4Name"></span></p>
+        <p class = "Blue5Name"> <span class = "Blue5Name"></span></p>
+
+        <p class = "TopImage"> <img src="../_shared/images/symbols/Top.jpg" alt="Top Lane" id="TopImage"></img></p>
+        <p class = "JungleImage"> <img src="../_shared/images/symbols/Jungle.jpg" alt="Jungle" id="JungleImage"></img></p>
+        <p class = "MidImage"> <img src="../_shared/images/symbols/Mid.jpg" alt="Mid Lane" id="MidImage"></img></p>
+        <p class = "BotImage"> <img src="../_shared/images/symbols/Bot.jpg" alt="Bot Lane" id="BotImage"></img></p>
+        <p class= "SupportImage"> <img src="../_shared/images/symbols/Support.jpg" alt="Support" id="SupportImage"></img></p>
+
+        <p class = "SkillControl"><i>Please assume this team composition is being used at Diamond level and that all players are using their preferred champions.</i></p>
+
+        <p class = "ChampFam"><b>How many of these champions are you familiar with?</b> <br>(You have a decent idea of how they will progress)</p>
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="0"/>0</label> 
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="1"/>1</label> 
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="2"/>2</label> 
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="3"/>3</label>
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="4"/>4</label> 
+        <label class = "Q0radio"><input type="radio" name="ChampFam" value="5"/>5</label>
+
+        <br>
+        <br>
+
+        <button onclick="_s.showButton()" class = "showButton">Continue</button> 
+        <p class="err_radio1">Please answer the question.</p>
+
+      <p class = "hidden1"><b>Regarding this composition, do you think it is more appropriate to make the following statements or say nothing?</b></p>
+      <p class = "hidden1">"This team composition excels in the laning phase."</p>
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Endorse</label> 
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>Say Nothing</label> 
+      <p class = "hidden1">"This team composition excels in the late game."</p>
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="1"/>Endorse</label> 
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="0"/>Say Nothing</label> 
+        <br>
+        <br>
+    <button onclick="_s.showButton2()" class = "hidden1 showButton2">Continue</button>
+    <p class="err_radio2">Please answer both questions.</p>
+
+        <p class = "hidden2"><b>If you watched this composition play 100 games at Diamond level against various opponents, in approximately how many of those games would you expect this composition to...</b></p>
+     <table id="multi_slider_table_Blue" class="hidden2 slider_table"> 
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+    <button onclick="_s.showButton3()" class = "hidden2">Continue</button>
+    <div class="err_slider">Please adjust all the sliders before continuing.</div>
+
+     <p class = "hidden3"><b>Imagine an expert watched this composition play 100 games at Diamond level against various opponents. As a result, when asked about the laning phase statement, they decided to say  ____. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
+     <table id="multi_slider_table_Speaker" class="hidden3 slider_table">
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+    <button onclick="_s.button()" class = "hidden3">Continue</button>
+    <div class="err_slider2">Please adjust all the sliders before continuing.</div>
+
+    </div>
+<!--           <script>
+      function showButton() {
+          // $(".p_hidden_listen").hide();
+          $(".showButton").hide();
+          $(".radio").show();
+          $(".hidden").show();                   
+        }
+      </script>
+ -->
+
+<!-- 
+      <div>
+      <table style="display: inline-block;" id="multi_slider_table_1" class="slider_table">
+        <tr><td></td><td class="left">very unlikely</td>
+          <td class="center"></td>
+          <td class="right">very likely</td></tr>
+      </table> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+      <table style="display: inline-block;" id="multi_slider_table_2" class="slider_table">
+        <tr><td></td><td class="left">very unlikely</td>
+          <td class="center"></td>
+          <td class="right">very likely</td></tr>
+      </table>
+    </div>
+ -->
+ <!--  <div class="slide" id="prior_knowledge">
+        <p class ="AnimalPic"> <span id = "AnimalExemplar2"></span></p>
+    <p>Before participating in this experiment, did you know <span class="QuestFact"></span></p>
+    <label><input type="radio"  name="response" value="Yes"/>Yes</label>
+    <label><input type="radio"  name="response" value="No"/>No</label>
+
+    <br>
+    <br>
+
+    <button onclick="_s.button()">Continue</button>
+    <p class="err">Please answer the question.</p>
+  </div> -->
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+
+            <p>What league level do you typically play at? <input type="text" id="language"/></p>
+      <p class = "level_exp">(e.g. Bronze, Silver, Gold, etc.)</p>
+
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+
+
+<!--       <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label> -->
+
+<!--       <p>Were there any problems or bugs in the experiment?</p>
+      <textarea id="problems" rows="2" cols="50"></textarea>
+
+      <p>What do you think is a fair price for the work you did?</p>
+      <textarea id="fairprice" rows="1" cols="10"></textarea> -->
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+<!--       <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select> --> 
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your Time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
