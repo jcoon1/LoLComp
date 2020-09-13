@@ -115,15 +115,22 @@
      <table id="multi_slider_table_Blue" class="hidden2 slider_table"> 
       <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
     </table>
-    <button onclick="_s.showButton3()" class = "hidden2">Continue</button>
+    <button onclick="_s.showButton3()" class = "hidden2 showButton3">Continue</button>
     <div class="err_slider">Please adjust all the sliders before continuing.</div>
 
-     <p class = "hidden3"><b>Imagine an expert watched this composition play 100 games at Diamond level against various opponents. As a result, when asked about the laning phase statement, they decided to say  ____. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
-     <table id="multi_slider_table_Speaker" class="hidden3 slider_table">
+     <p class = "hidden3"><b>Imagine an expert watched this composition play 100 games at Diamond level against various opponents. As a result, when asked about the laning phase statement, they decided to say <span class = "EarlyStatement"></span>. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
+     <table id="multi_slider_table_Speaker_Early" class="hidden3 slider_table">
       <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
     </table>
-    <button onclick="_s.button()" class = "hidden3">Continue</button>
-    <div class="err_slider2">Please adjust all the sliders before continuing.</div>
+    <button onclick="_s.showButton4()" class = "hidden3 showButton4">Continue</button>
+    <div class="err_slider2">Please adjust the slider before continuing.</div>
+
+    <p class = "hidden4"><b>When asked about the late game statement, they decided to say  <span class = "LateStatement"></span>. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
+     <table id="multi_slider_table_Speaker_Late" class="hidden4 slider_table">
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+    <button onclick="_s.button()" class = "hidden4">Continue</button>
+    <div class="err_slider3">Please adjust the slider before continuing.</div>
 
     </div>
 <!--           <script>
@@ -225,7 +232,7 @@
   </div>
 
   <div id="thanks" class="slide js" >
-    <p  class="big">Thanks for your Time!</p>
+    <p  class="big">Thanks for your time!</p>
   </div>
 
   <div class="progress">

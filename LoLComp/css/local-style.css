@@ -170,12 +170,22 @@ p.hidden3{
 	bottom: 800px;
 }
 
+p.hidden4{
+	position: relative;
+	bottom: 800px;
+}
+
 table#multi_slider_table_Blue{
 	position: relative;
 	bottom: 800px;
 }
 
-table#multi_slider_table_Speaker{
+table#multi_slider_table_Speaker_Early{
+	position: relative;
+	bottom: 800px;
+}
+
+table#multi_slider_table_Speaker_Late{
 	position: relative;
 	bottom: 800px;
 }
@@ -184,6 +194,11 @@ table#multi_slider_table_Speaker{
 	position: relative;
 	top: 10px;
 }*/
+
+button.hidden4{
+	position: relative;
+	bottom: 800px;
+}
 
 button.hidden3{
 	position: relative;
@@ -211,6 +226,18 @@ p.err_radio2{
 }
 
 div.err_slider{
+	position: relative;
+	bottom: 800px;
+	display: block;
+}
+
+div.err_slider2{
+	position: relative;
+	bottom: 800px;
+	display: block;
+}
+
+div.err_slider3{
 	position: relative;
 	bottom: 800px;
 	display: block;

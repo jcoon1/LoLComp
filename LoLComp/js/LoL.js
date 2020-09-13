@@ -160,11 +160,14 @@ function make_slides(f) {
       $("#Blue4Image").html("<img src =\"" + stim.Blue[3].Image + "\" alt=\"Blue4\" id=\"Blue4Image\"></img>")
       $("#Blue5Image").html("<img src =\"" + stim.Blue[4].Image + "\" alt=\"Blue5\" id=\"Blue5Image\"></img>")
 
-      $("#Red1Image").html("<img src =\"" + stim.Red[0].Image + "\" alt=\"Red1\" id=\"Red1Image\"></img>")
-      $("#Red2Image").html("<img src =\"" + stim.Red[1].Image + "\" alt=\"Red2\" id=\"Red1Image\"></img>")
-      $("#Red3Image").html("<img src =\"" + stim.Red[2].Image + "\" alt=\"Red3\" id=\"Red1Image\"></img>")
-      $("#Red4Image").html("<img src =\"" + stim.Red[3].Image + "\" alt=\"Red4\" id=\"Red1Image\"></img>")
-      $("#Red5Image").html("<img src =\"" + stim.Red[4].Image + "\" alt=\"Red5\" id=\"Red1Image\"></img>")
+      // $("#Red1Image").html("<img src =\"" + stim.Red[0].Image + "\" alt=\"Red1\" id=\"Red1Image\"></img>")
+      // $("#Red2Image").html("<img src =\"" + stim.Red[1].Image + "\" alt=\"Red2\" id=\"Red1Image\"></img>")
+      // $("#Red3Image").html("<img src =\"" + stim.Red[2].Image + "\" alt=\"Red3\" id=\"Red1Image\"></img>")
+      // $("#Red4Image").html("<img src =\"" + stim.Red[3].Image + "\" alt=\"Red4\" id=\"Red1Image\"></img>")
+      // $("#Red5Image").html("<img src =\"" + stim.Red[4].Image + "\" alt=\"Red5\" id=\"Red1Image\"></img>")
+
+      $(".EarlyStatement").html(stim.EarlyStatement)
+      $(".LateStatement").html(stim.LateStatement)
 
 	this.sentence_types = ["Early", "Late", "General"];
       var sentences = {
@@ -173,9 +176,13 @@ function make_slides(f) {
         "General": "...excel in general?",
       };
 
-  this.sentence_types2 = ["Early", "Late"];
+  this.sentence_types2 = ["Early"];
       var sentences2 = {
         "Early": "...excelled in the laning phase?",
+      };
+
+  this.sentence_types3 = [ "Late"];
+      var sentences3 = {
         "Late": "...excelled in the late game?",
       };
 
@@ -188,21 +195,32 @@ function make_slides(f) {
         utils.match_row_height("#multi_slider_table_Blue", ".slider_target");
       }
 
-      this.n_sliders_Speaker = this.sentence_types2.length;
-      $(".slider_row_Speaker").remove();
-      for (var i=0; i<this.n_sliders_Speaker; i++) {
-        var sentence_type = this.sentence_types2[i];
-        var sentence = sentences2[sentence_type];
-        $("#multi_slider_table_Speaker").append('<tr class="slider_row_Speaker"><td class="slider_target" id="objectSpeaker' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker' + i + '" class="slider">-------[ ]--------</div></td></tr>');
-        utils.match_row_height("#multi_slider_table_Speaker", ".slider_target");
+      this.n_sliders_Speaker_Early = this.sentence_types2.length;
+      $(".slider_row_Speaker_Early").remove();
+      for (var i=0; i<this.n_sliders_Speaker_Early; i++) {
+        var sentence_type2 = this.sentence_types2[i];
+        var sentence = sentences2[sentence_type2];
+        $("#multi_slider_table_Speaker_Early").append('<tr class="slider_row_Speaker_Early"><td class="slider_target" id="objectSpeaker_Early' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Early' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        utils.match_row_height("#multi_slider_table_Speaker_Early", ".slider_target");
+      }
+
+      this.n_sliders_Speaker_Late = this.sentence_types3.length;
+      $(".slider_row_Speaker_Late").remove();
+      for (var i=0; i<this.n_sliders_Speaker_Late; i++) {
+        var sentence_type3 = this.sentence_types3[i];
+        var sentence = sentences3[sentence_type3];
+        $("#multi_slider_table_Speaker_Late").append('<tr class="slider_row_Speaker_Late"><td class="slider_target" id="objectSpeaker_Late' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Late' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        utils.match_row_height("#multi_slider_table_Speaker_Late", ".slider_target");
       }
 
 
       // this.init_sliders(this.preferences);
       this.init_sliders_Blue(this.sentence_types);
-      this.init_sliders_Speaker(this.sentence_types);
+      this.init_sliders_Speaker_Early(this.sentence_types2);
+      this.init_sliders_Speaker_Late(this.sentence_types3)
       exp.sliderPostBlue = [];
-      exp.sliderPostSpeaker = [];
+      exp.sliderPostSpeaker_Early = [];
+      exp.sliderPostSpeaker_Late = [];
 
       $('input[type=radio]').attr('checked', false); //for radio button response
       // hide stuff
@@ -210,9 +228,11 @@ function make_slides(f) {
       $(".err_radio2").hide();
       $(".err_slider").hide();
       $(".err_slider2").hide();
+      $(".err_slider3").hide();
       $(".hidden1").hide();
       $(".hidden2").hide();
       $(".hidden3").hide();
+      $(".hidden4").hide();
 
       this.trial_num++;
     },
@@ -239,9 +259,14 @@ function make_slides(f) {
          utils.make_slider("#sliderBlue" + i, this.make_slider_callback_Blue(i));
       }
     },
-    init_sliders_Speaker : function() {
-      for (var i=0; i<this.sentence_types.length; i++) {
-         utils.make_slider("#sliderSpeaker" + i, this.make_slider_callback_Speaker(i));
+    init_sliders_Speaker_Early : function() {
+      for (var i=0; i<this.sentence_types2.length; i++) {
+         utils.make_slider("#sliderSpeaker_Early" + i, this.make_slider_callback_Speaker_Early(i));
+      }
+    },
+  init_sliders_Speaker_Late : function() {
+      for (var i=0; i<this.sentence_types3.length; i++) {
+         utils.make_slider("#sliderSpeaker_Late" + i, this.make_slider_callback_Speaker_Late(i));
       }
     },
     make_slider_callback_Blue : function(i) {
@@ -249,9 +274,14 @@ function make_slides(f) {
         exp.sliderPostBlue[i] = ui.value;
       };
     },
-    make_slider_callback_Speaker : function(i) {
+    make_slider_callback_Speaker_Early : function(i) {
       return function(event, ui) {
-        exp.sliderPostSpeaker[i] = ui.value;
+        exp.sliderPostSpeaker_Early[i] = ui.value;
+      };
+    },
+    make_slider_callback_Speaker_Late : function(i) {
+      return function(event, ui) {
+        exp.sliderPostSpeaker_Late[i] = ui.value;
       };
     },
 
@@ -297,16 +327,36 @@ function make_slides(f) {
         this.log_responses();
         $(".showButton3").hide();
         $(".hidden3").show();
+        $(".err_slider").hide();
       }
       else{
         $(".err_slider").show();
       }
     },
 
+    showButton4 : function(){
+      var ok_to_go_on = true
+      for (var i=0; i<this.n_sliders_Speaker_Early; i++) {
+        if (exp.sliderPostSpeaker_Early[i]==undefined){
+          ok_to_go_on = false
+        }
+      }
+      if(ok_to_go_on){
+        this.log_responses();
+        $(".showButton4").hide();
+        $(".hidden4").show();
+        $(".err_slider2").hide();
+      }
+      else{
+        $(".err_slider2").show();
+      }
+    },
+
+
     button : function(){
       	var ok_to_go_on = true
-      	for (var i=0; i<this.n_sliders_Speaker; i++) {
-        if (exp.sliderPostSpeaker[i]==undefined){
+      	for (var i=0; i<this.n_sliders_Speaker_Late; i++) {
+        if (exp.sliderPostSpeaker_Late[i]==undefined){
           ok_to_go_on = false
         }
       }
@@ -318,7 +368,7 @@ function make_slides(f) {
         _stream.apply(this); //make sure this is at the *end*, after you log your data
       }
       	else {
-           $(".err_slider2").show();         
+           $(".err_slider3").show();         
       }
     },
 
@@ -343,7 +393,9 @@ function make_slides(f) {
         "blue_excel_early" : exp.sliderPostBlue[0],
         "blue_excel_late" : exp.sliderPostBlue[1],
         "blue_excel_general" : exp.sliderPostBlue[2],
-        "realistic_blue" : $('input[name=realistic_blue]:checked').val(), //if using radio buttons
+        // "realistic_blue" : $('input[name=realistic_blue]:checked').val(), //if using radio buttons
+        "speaker_excel_early": exp.sliderPostSpeaker_Early[0],
+        "speaker_excel_late": exp.sliderPostSpeaker_Late[0],
         "ChampFam" : $('input[name=ChampFam]:checked').val(), //if using radio buttons
         "TVJearly" : $('input[name=TVJearly]:checked').val(), //if using radio buttons
         "TVJlate" : $('input[name=TVJlate]:checked').val() //if using radio buttons
