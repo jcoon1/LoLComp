@@ -523,14 +523,14 @@ for(i=0;i<(num_comps/2);i++){
 	}
 	else{
 	LoLStimuli[ticker1].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp2[0]]
-	LoLStimuli[ticker1].EarlyStatementIndex = ShuffledCombos[i].Comp1[0]
+	LoLStimuli[ticker1].EarlyStatementIndex = ShuffledCombos[i].Comp2[0]
 	LoLStimuli[ticker1].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp2[1]+2)]
-	LoLStimuli[ticker1].LateStatementIndex = ShuffledCombos[i].Comp1[1]
+	LoLStimuli[ticker1].LateStatementIndex = ShuffledCombos[i].Comp2[1]
 
 	LoLStimuli[ticker2].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp1[0]]
-	LoLStimuli[ticker2].EarlyStatement = ShuffledCombos[i].Comp2[0]
+	LoLStimuli[ticker2].EarlyStatementIndex = ShuffledCombos[i].Comp1[0]
 	LoLStimuli[ticker2].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp1[1]+2)]
-	LoLStimuli[ticker2].LateStatement = ShuffledCombos[i].Comp2[1]
+	LoLStimuli[ticker2].LateStatementIndex = ShuffledCombos[i].Comp1[1]
 	}
 }
 

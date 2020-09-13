@@ -394,6 +394,8 @@ function make_slides(f) {
         "blue_excel_late" : exp.sliderPostBlue[1],
         "blue_excel_general" : exp.sliderPostBlue[2],
         // "realistic_blue" : $('input[name=realistic_blue]:checked').val(), //if using radio buttons
+        "speaker_early_index" : this.stim.EarlyStatementIndex,
+        "speaker_late_index" : this.stim.LateStatementIndex,
         "speaker_excel_early": exp.sliderPostSpeaker_Early[0],
         "speaker_excel_late": exp.sliderPostSpeaker_Late[0],
         "ChampFam" : $('input[name=ChampFam]:checked').val(), //if using radio buttons
