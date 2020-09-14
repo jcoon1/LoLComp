@@ -285,24 +285,6 @@ function make_slides(f) {
       };
     },
 
-    // showButton2: function(){
-    //   var ok_to_go_on = true
-    //   for (var i=0; i<this.n_sliders_Blue; i++) {
-    //     if (exp.sliderPostBlue[i]==undefined){
-    //       ok_to_go_on = false
-    //     }
-    //   }
-    //   if (ok_to_go_on) {  
-  		// 	this.log_responses();
-  		// 	$(".showButton2").hide();
-  		// 	$(".hidden2").show();
-  		// 	$(".err_slider").hide();
-  		// }
-  		// else {
-  		// 	$(".err_slider").show();
-  		// }
-    // },
-
     showButton2: function(){
 
       if ($('input[name=TVJearly]:checked').size() <= 0 || $('input[name=TVJlate]:checked').size() <= 0 ) {
@@ -405,6 +387,79 @@ function make_slides(f) {
     }
   });
 
+slides.expertise = slide({
+  name: "expertise",
+
+  present: [{"emptiness": "dear god please work"}],
+
+present_handle : function(stim){
+$(".err_mega").hide();
+
+this.sentence_types = ["Early", "Late"];
+      var sentences = {
+        "Early": "...excel in the laning phase?",
+        "Late": "...excel in the late game?",
+      };
+
+      this.n_sliders_Expertise = this.sentence_types.length;
+      $(".slider_row_Expertise").remove();
+      for (var i=0; i<this.n_sliders_Expertise; i++) {
+        var sentence_type = this.sentence_types[i];
+        var sentence = sentences[sentence_type];
+        $("#multi_slider_table_Expertise").append('<tr class="slider_row_Expertise"><td class="slider_target" id="objectExpertise' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderExpertise' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        utils.match_row_height("#multi_slider_table_Expertise", ".slider_target");
+      }
+
+      this.init_sliders_Expertise(this.sentence_types);
+      exp.sliderPostExpertise = [];
+  },
+
+  init_sliders_Expertise : function() {
+      for (var i=0; i<this.sentence_types.length; i++) {
+         utils.make_slider("#sliderExpertise" + i, this.make_slider_callback_Expertise(i));
+      }
+    },
+
+  make_slider_callback_Expertise : function(i) {
+      return function(event, ui) {
+        exp.sliderPostExpertise[i] = ui.value;
+      };
+    },
+
+    megaButton : function(){
+        var ok_to_go_on = true
+        for (var i=0; i<this.n_sliders_Expertise; i++) {
+        if (exp.sliderPostExpertise[i]==undefined){
+          ok_to_go_on = false
+        }
+      }
+      if(ok_to_go_on && $("#year_started").val()!="-1" && $("#league_level").val()!= "-1" && $("#hours_total").val()!= "-1"
+        && $("#games_weekly").val()!=undefined && $("#champfam_total").val()!="-1"){
+        var end_time = Date.now();
+        // this.time_spent = end_time - this.start_time;
+        // this.log_responses();
+        exp.go() //use exp.go() if and only if there is no "present" data.
+      }
+        else {
+           $(".err_mega").show();         
+      }
+    },
+
+  log_responses : function() {
+    exp.subj_expertise = {
+    "year_started" : $("#year_started").val(),
+    "league_level" : $("#league_level").val(),
+    "hours_total" : $("#hours_total").val(),
+    "games_weekly" : $("#games_weekly").val(),
+    "champfam_total" : $("champfam_total").val(),
+    "hierarch_early" : exp.sliderPostExpertise[0],
+    "hierarch_late" : exp.sliderPostExpertise[1]
+  }
+    exp.go(); //use exp.go() if and only if there is no "present" data.
+  } 
+
+})
+
 // slides.prior_knowledge = slide({
 //     name : "prior_knowledge",
 
@@ -462,11 +517,10 @@ function make_slides(f) {
 
   slides.subj_info =  slide({
     name : "subj_info",
+    
     submit : function(e){
       //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
       exp.subj_data = {
-        level: $("#level_exp").val(),
-        useremail : $("#useremail").val(),
         language : $("#language").val(),
         // enjoyment : $("#enjoyment").val(),
         // asses : $('input[name="assess"]:checked').val(),
@@ -490,6 +544,7 @@ function make_slides(f) {
           "system" : exp.system,
           "condition" : exp.condition,
           "subject_information" : exp.subj_data,
+          "subject_expertise" : exp.subj_expertise,
           "time_in_minutes" : (Date.now() - exp.startT)/60000
       };
       setTimeout(function() {turk.submit(exp.data);}, 1000);
@@ -513,7 +568,7 @@ function init() {
       screenUW: exp.width
     };
   //blocks of the experiment:
-  exp.structure=["i0", "instructions", "main_questions", 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "main_questions", "expertise", 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:

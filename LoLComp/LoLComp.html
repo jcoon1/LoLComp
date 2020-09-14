@@ -170,13 +170,79 @@
     <p class="err">Please answer the question.</p>
   </div> -->
 
+  <div class = "slide" id="expertise">
+  	<div class="long_form">
+  		<div class="subj_info_title">Background Experience</div>
+  		<p>In what year did you begin playing League of Legends?</p>
+  		<select id="year_started">
+  			<label><option value = "-1"/></label>
+  			<label><option value = "09"/>2009</label>
+  			<label><option value = "10"/>2010</label>
+  			<label><option value = "11"/>2011</label>
+  			<label><option value = "12"/>2012</label>
+  			<label><option value = "13"/>2013</label>
+  			<label><option value = "14"/>2014</label>
+  			<label><option value = "15"/>2015</label>
+  			<label><option value = "16"/>2016</label>
+  			<label><option value = "17"/>2017</label>
+  			<label><option value = "18"/>2018</label>
+  			<label><option value = "19"/>2019</label>
+  			<label><option value = "20"/>2020</label>
+  		</select>
+
+  		<p>What league level do you typically play at?</p>
+  		<select id="league_level">
+  			<label><option value = "-1"/></label>
+  			<label><option value = "Iron"/>Iron</label>
+  			<label><option value = "Bronze"/>Bronze</label>
+  			<label><option value = "Silver"/>Silver</label>
+  			<label><option value = "Gold"/>Gold</label>
+  			<label><option value = "Platinum"/>Platinum</label>
+  			<label><option value = "Diamond"/>Diamond</label>
+  			<label><option value = "Master"/>Master</label>
+  			<label><option value = "Grandmaster"/>Grandmaster</label>
+  			<label><option value = "Challenger"/>Challenger</label>
+  		</select>
+
+  		<p>Approximately how many hours have you spent playing competitive games?</p>
+  		<select id="hours_total">
+  			<label><option value = "-1"/></label>
+  			<label><option value="0-10"/>0-10 hrs. (~0-20 games)</label>
+  			<label><option value="10-100"/>10-100 hrs. (~20-200 games)</label>
+  			<label><option value="100-1,000"/>100-1000 hrs. (~200-2000 games)</label>
+  			<label><option value="1,000-10,000"/>1,000-10,000 hrs. (~2,000-20,000 games)</label>
+  			<label><option value="10,000+"/>10,000+ hrs. (~20,000+ games)</label>
+  		</select>
+
+  		<p>In a typical week, how many competitive games do you play?</p><input type = "text" id="games_weekly"/></p>
+
+  		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of their abilities and how they will progress over the course of a game)</p>
+  		<select id="champfam_total">
+  			<label><option value = "-1"/></label>
+  			<label><option value = "0-30"/>0-30</label>
+  			<label><option value = "31-60"/>31-60</label>
+  			<label><option value = "61-90"/>61-90</label>
+  			<label><option value = "91-120"/>91-120</label>
+  			<label><option value = "121-150"/>121-150</label>
+  		</select>
+
+  		<p>If you saw a "typical" team composition play 100 games, in how many of those games would you expect it to...</p>
+  		<table id="multi_slider_table_Expertise" class="slider_table"> 
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+
+        <button onclick="_s.megaButton()">Continue</button>
+    <div class="err_mega">Please answer all questions before continuing.</div>
+
+
+  	</div>
+  </div>
+
+
+
   <div class="slide"  id="subj_info">
     <div class="long_form">
       <div class="subj_info_title">Additional information</div>
-
-            <p>What league level do you typically play at? <input type="text" id="language"/></p>
-      <p class = "level_exp">(e.g. Bronze, Silver, Gold, etc.)</p>
-
       <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
 
 
