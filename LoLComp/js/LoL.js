@@ -436,6 +436,8 @@ this.sentence_types = ["Early", "Late"];
       if(ok_to_go_on && $("#year_started").val()!="-1" && $("#league_level").val()!= "-1" && $("#hours_total").val()!= "-1"
         && $("#games_weekly").val()!=undefined && $("#champfam_total").val()!="-1"){
         var end_time = Date.now();
+        this.time_spent = end_time - this.start_time;
+        this.log_responses();
         // this.time_spent = end_time - this.start_time;
         // this.log_responses();
         _stream.apply(this); //make sure this is at the *end*, after you log your data
@@ -455,7 +457,6 @@ this.sentence_types = ["Early", "Late"];
     "hierarch_early" : exp.sliderPostExpertise[0],
     "hierarch_late" : exp.sliderPostExpertise[1]
   }
-    exp.go(); //use exp.go() if and only if there is no "present" data.
   } 
 
 })
