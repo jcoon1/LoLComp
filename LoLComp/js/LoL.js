@@ -438,7 +438,7 @@ this.sentence_types = ["Early", "Late"];
         var end_time = Date.now();
         // this.time_spent = end_time - this.start_time;
         // this.log_responses();
-        exp.go() //use exp.go() if and only if there is no "present" data.
+        _stream.apply(this); //make sure this is at the *end*, after you log your data
       }
         else {
            $(".err_mega").show();         
