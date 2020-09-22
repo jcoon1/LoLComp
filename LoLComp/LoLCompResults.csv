@@ -1,0 +1,6 @@
+,blueTopIndex,blueTopName,blueTopPlay,blueJungleIndex,blueJungleName,blueJunglePlay,blueMidIndex,blueMidName,blueMidPlay,blueBotIndex,blueBotName,blueBotPlay,blueSupportIndex,blueSupportName,blueSupportPlay,speaker_early_index,speaker_late_index,ChampFam,TVJearly,TVJlate,blue_excel_early,blue_excel_late,blue_excel_general,speaker_excel_early,speaker_excel_late,language,age,gender,education,comments,Browser,OS,screenH,screenW,time_in_minutes,participant_id
+0,16,Camille,0.0162,55,Kayn,0.0495,147,Zoe,0.0253,128,Vayne,0.0662,75,Morgana,0.0502,1,1,2,,,,,,,,lang,43,Male,2,jeff test,Firefox,Windows,864,1536,0.8908833333333334,1
+1,16,Camille,0.0162,55,Kayn,0.0495,147,Zoe,0.0253,128,Vayne,0.0662,75,Morgana,0.0502,1,1,2,1,0,,,,,,lang,43,Male,2,jeff test,Firefox,Windows,864,1536,0.8908833333333334,1
+2,16,Camille,0.0162,55,Kayn,0.0495,147,Zoe,0.0253,128,Vayne,0.0662,75,Morgana,0.0502,1,1,2,1,0,0.4,0.62,0.52,,,lang,43,Male,2,jeff test,Firefox,Windows,864,1536,0.8908833333333334,1
+3,16,Camille,0.0162,55,Kayn,0.0495,147,Zoe,0.0253,128,Vayne,0.0662,75,Morgana,0.0502,1,1,2,1,0,0.4,0.62,0.52,0.3,,lang,43,Male,2,jeff test,Firefox,Windows,864,1536,0.8908833333333334,1
+4,16,Camille,0.0162,55,Kayn,0.0495,147,Zoe,0.0253,128,Vayne,0.0662,75,Morgana,0.0502,1,1,2,1,0,0.4,0.62,0.52,0.3,0.57,lang,43,Male,2,jeff test,Firefox,Windows,864,1536,0.8908833333333334,1

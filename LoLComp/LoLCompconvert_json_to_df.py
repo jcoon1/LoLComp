@@ -11,8 +11,8 @@ def convert_json_to_df(trials_json):
     for key in trials_json['system'].keys():
         df[key] = trials_json['system'][key]
 
-    # for key in trials_json['subject_expertise'].keys():
-    #   df[key] = trials_json['subject_expertise'][key]     
+    for key in trials_json['subject_expertise'].keys():
+      df[key] = trials_json['subject_expertise'][key]     
 
     df['time_in_minutes'] = trials_json['time_in_minutes']
     # df['workerID'] = trials_json['workerID']
