@@ -1,4 +1,15 @@
 <?php
+
+echo $userIP=$_SERVER['REMOTE_ADDR'];
+
+// //We need a way of loading IP addresses from the JSON file into this array
+// $priorIPs = ['198.x.x.x', '200.x.x.x'];
+
+// if (in_array($userIP, $allowedIPs)) {
+//     exit('You have already responded to this survey. Thanks for participating!');
+// }
+
+
      
 $json = $_POST['jsonData'];
 //  turn stringified json object into a PHP object and handle data for fwrite text formatting if necessary
