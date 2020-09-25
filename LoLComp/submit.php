@@ -1,6 +1,6 @@
 <?php
 
-echo $userIP=$_SERVER['REMOTE_ADDR'];
+$userIP=$_SERVER['REMOTE_ADDR'];
 
 // //We need a way of loading IP addresses from the JSON file into this array
 // $priorIPs = ['198.x.x.x', '200.x.x.x'];
