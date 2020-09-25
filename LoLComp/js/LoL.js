@@ -191,7 +191,8 @@ function make_slides(f) {
       for (var i=0; i<this.n_sliders_Blue; i++) {
         var sentence_type = this.sentence_types[i];
         var sentence = sentences[sentence_type];
-        $("#multi_slider_table_Blue").append('<tr class="slider_row_Blue"><td class="slider_target" id="objectBlue' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderBlue' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        
+                $("#multi_slider_table_Blue").append('<tr class="slider_row_Blue"><td class="slider_target" id="objectBlue' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderBlue' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplay' + i + '"> _ </p> </td></tr>'); 
         utils.match_row_height("#multi_slider_table_Blue", ".slider_target");
       }
 
@@ -200,7 +201,8 @@ function make_slides(f) {
       for (var i=0; i<this.n_sliders_Speaker_Early; i++) {
         var sentence_type2 = this.sentence_types2[i];
         var sentence = sentences2[sentence_type2];
-        $("#multi_slider_table_Speaker_Early").append('<tr class="slider_row_Speaker_Early"><td class="slider_target" id="objectSpeaker_Early' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Early' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        
+        $("#multi_slider_table_Speaker_Early").append('<tr class="slider_row_Speaker_Early"><td class="slider_target" id="objectSpeaker_Early' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Early' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayEarly' + i + '"> _ </p> </td></tr>');
         utils.match_row_height("#multi_slider_table_Speaker_Early", ".slider_target");
       }
 
@@ -209,7 +211,8 @@ function make_slides(f) {
       for (var i=0; i<this.n_sliders_Speaker_Late; i++) {
         var sentence_type3 = this.sentence_types3[i];
         var sentence = sentences3[sentence_type3];
-        $("#multi_slider_table_Speaker_Late").append('<tr class="slider_row_Speaker_Late"><td class="slider_target" id="objectSpeaker_Late' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Late' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        
+        $("#multi_slider_table_Speaker_Late").append('<tr class="slider_row_Speaker_Late"><td class="slider_target" id="objectSpeaker_Late' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderSpeaker_Late' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayLate' + i + '"> _ </p> </td></tr>');
         utils.match_row_height("#multi_slider_table_Speaker_Late", ".slider_target");
       }
 
@@ -272,16 +275,31 @@ function make_slides(f) {
     make_slider_callback_Blue : function(i) {
       return function(event, ui) {
         exp.sliderPostBlue[i] = ui.value;
+
+        // Albert
+        var sliderValDisplay = document.getElementById("sliderValDisplay" + i);
+        sliderValDisplay.innerHTML = ui.value * 100;
+        // End of Albert
       };
     },
     make_slider_callback_Speaker_Early : function(i) {
       return function(event, ui) {
         exp.sliderPostSpeaker_Early[i] = ui.value;
+
+        // Albert
+        var sliderValDisplayEarly = document.getElementById("sliderValDisplayEarly" + i);
+        sliderValDisplayEarly.innerHTML = ui.value * 100;
+        // End of Albert
       };
     },
     make_slider_callback_Speaker_Late : function(i) {
       return function(event, ui) {
         exp.sliderPostSpeaker_Late[i] = ui.value;
+
+        // Albert
+        var sliderValDisplayLate = document.getElementById("sliderValDisplayLate" + i);
+        sliderValDisplayLate.innerHTML = ui.value * 100;
+        // End of Albert
       };
     },
 
