@@ -191,8 +191,8 @@ function make_slides(f) {
       for (var i=0; i<this.n_sliders_Blue; i++) {
         var sentence_type = this.sentence_types[i];
         var sentence = sentences[sentence_type];
-        
-                $("#multi_slider_table_Blue").append('<tr class="slider_row_Blue"><td class="slider_target" id="objectBlue' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderBlue' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplay' + i + '"> _ </p> </td></tr>'); 
+
+        $("#multi_slider_table_Blue").append('<tr class="slider_row_Blue"><td class="slider_target" id="objectBlue' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderBlue' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplay' + i + '"> _ </p> </td></tr>'); 
         utils.match_row_height("#multi_slider_table_Blue", ".slider_target");
       }
 
@@ -278,7 +278,7 @@ function make_slides(f) {
 
         // Albert
         var sliderValDisplay = document.getElementById("sliderValDisplay" + i);
-        sliderValDisplay.innerHTML = ui.value * 100;
+        sliderValDisplay.innerHTML = Math.round(ui.value * 100);
         // End of Albert
       };
     },
@@ -288,7 +288,7 @@ function make_slides(f) {
 
         // Albert
         var sliderValDisplayEarly = document.getElementById("sliderValDisplayEarly" + i);
-        sliderValDisplayEarly.innerHTML = ui.value * 100;
+        sliderValDisplayEarly.innerHTML = Math.round(ui.value * 100);
         // End of Albert
       };
     },
@@ -298,7 +298,7 @@ function make_slides(f) {
 
         // Albert
         var sliderValDisplayLate = document.getElementById("sliderValDisplayLate" + i);
-        sliderValDisplayLate.innerHTML = ui.value * 100;
+        sliderValDisplayLate.innerHTML = Math.round(ui.value * 100);
         // End of Albert
       };
     },
