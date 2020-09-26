@@ -534,6 +534,20 @@ for(i=0;i<(num_comps/2);i++){
 	}
 }
 
+for(i=0;i<num_comps;i++){
+	if(LoLStimuli[i].EarlyStatementIndex == 1){
+		LoLStimuli[i].Early_counterfact = SpeakerStatements[0]
+	} else {
+		LoLStimuli[i].Early_counterfact = SpeakerStatements[1]
+	}
+	if(LoLStimuli[i].LateStatementIndex == 1){
+		LoLStimuli[i].Late_counterfact = SpeakerStatements[2]
+	}
+	else{
+		LoLStimuli[i].Late_counterfact = SpeakerStatements[3]
+	}
+}
+
 randLoLStimuli = shuffle(LoLStimuli)
 
 LoLStimuli = randLoLStimuli

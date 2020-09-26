@@ -85,7 +85,7 @@
 
         <p class = "SkillControl"><i>Please assume this team composition is being used at Diamond level and that all players are using their preferred champions.</i></p>
 
-        <p class = "ChampFam"><b>How many of these champions are you familiar with?</b> <br>(You have a decent idea of how they will progress)</p>
+        <p class = "ChampFam"><b>How many of these champions are you familiar with?</b> <br>(Meaning you have a decent idea of their abilities and how they progress over the course of a game)</p>
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="0"/>0</label> 
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="1"/>1</label> 
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="2"/>2</label> 
@@ -99,35 +99,35 @@
         <button onclick="_s.showButton()" class = "showButton">Continue</button> 
         <p class="err_radio1">Please answer the question.</p>
 
-      <p class = "hidden1"><b>Regarding this composition, do you think it is more appropriate to make the following statements or say nothing?</b></p>
+      <p class = "hidden1"><b>Imagine you are discussing this composition with another player. Do you think it is more appropriate to make the following statements or say nothing?</b></p>
       <p class = "hidden1">"This team composition excels in the laning phase."</p>
-        <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Endorse</label> 
-        <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>Say Nothing</label> 
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Make the statement</label> 
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>Say nothing</label> 
       <p class = "hidden1">"This team composition excels in the late game."</p>
-        <label class = "hidden1"><input type="radio" name="TVJlate" value="1"/>Endorse</label> 
-        <label class = "hidden1"><input type="radio" name="TVJlate" value="0"/>Say Nothing</label> 
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="1"/>Make the statement</label> 
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="0"/>Say nothing</label> 
         <br>
         <br>
     <button onclick="_s.showButton2()" class = "hidden1 showButton2">Continue</button>
     <p class="err_radio2">Please answer both questions.</p>
 
-        <p class = "hidden2"><b>If you watched this composition play 100 games at Diamond level against various opponents, in approximately how many of those games would you expect this composition to...</b></p>
+        <p class = "hidden2"><b>Imagine you watched this composition play 100 games at Diamond level against various opponents. In how many of those games do you think this composition would...</b></p>
      <table id="multi_slider_table_Blue" class="hidden2 slider_table"> 
-      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+      <tr><td></td><td class="left">0</td><td class="right">100</td></tr>
     </table>
     <button onclick="_s.showButton3()" class = "hidden2 showButton3">Continue</button>
     <div class="err_slider">Please adjust all the sliders before continuing.</div>
 
-     <p class = "hidden3"><b>Imagine an expert watched this composition play 100 games at Diamond level against various opponents. As a result, when asked about the laning phase statement, they decided to say <span class = "EarlyStatement"></span>. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
+     <p class = "hidden3"><b>Imagine an expert player watched this composition play 100 games at Diamond level against various opponents. Based on what they saw, they decided it was <i>more appropriate to say <span class = "EarlyStatement"></span></i> than to say <span class = "Early_counterfact"></span>. <br><br>Of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
      <table id="multi_slider_table_Speaker_Early" class="hidden3 slider_table">
-      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+      <tr><td></td><td class="left">0</td><td class="right">100</td></tr>
     </table>
     <button onclick="_s.showButton4()" class = "hidden3 showButton4">Continue</button>
     <div class="err_slider2">Please adjust the slider before continuing.</div>
 
-    <p class = "hidden4"><b>When asked about the late game statement, they decided to say  <span class = "LateStatement"></span>. Of the 100 games witnessed by the expert, in approximately how many of those games would you expect this composition to have...</b></p>
+    <p class = "hidden4"><b>Based on what they saw in those 100 games, they decided it was <i>more appropriate to say <span class = "LateStatement"></span></i> than to say <span class = "Late_counterfact"></span>. <br><br>Of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
      <table id="multi_slider_table_Speaker_Late" class="hidden4 slider_table">
-      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+      <tr><td></td><td class="left">0</td><td class="right">100</td></tr>
     </table>
     <button onclick="_s.button()" class = "hidden4">Continue</button>
     <div class="err_slider3">Please adjust the slider before continuing.</div>
@@ -216,7 +216,7 @@
 
   		<p>In a typical week, how many competitive games do you play?</p><input type = "text" id="games_weekly"/></p>
 
-  		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of their abilities and how they will progress over the course of a game)</p>
+  		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of their abilities and how they progress over the course of a game)</p>
   		<select id="champfam_total">
   			<label><option value = "-1"/></label>
   			<label><option value = "0-30"/>0-30</label>

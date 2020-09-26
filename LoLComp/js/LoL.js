@@ -169,6 +169,9 @@ function make_slides(f) {
       $(".EarlyStatement").html(stim.EarlyStatement)
       $(".LateStatement").html(stim.LateStatement)
 
+      $(".Early_counterfact").html(stim.Early_counterfact)
+      $(".Late_counterfact").html(stim.Late_counterfact)
+
 	this.sentence_types = ["Early", "Late", "General"];
       var sentences = {
         "Early": "...excel in the laning phase?",
