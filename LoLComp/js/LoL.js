@@ -421,13 +421,13 @@ this.sentence_types = ["Early", "Late"];
         "Early": "...excel in the laning phase?",
         "Late": "...excel in the late game?",
       };
-
       this.n_sliders_Expertise = this.sentence_types.length;
       $(".slider_row_Expertise").remove();
       for (var i=0; i<this.n_sliders_Expertise; i++) {
         var sentence_type = this.sentence_types[i];
         var sentence = sentences[sentence_type];
-        $("#multi_slider_table_Expertise").append('<tr class="slider_row_Expertise"><td class="slider_target" id="objectExpertise' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderExpertise' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+
+        $("#multi_slider_table_Expertise").append('<tr class="slider_row_Expertise"><td class="slider_target" id="objectExpertise' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderExpertise' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayExpertise' + i + '"> _ </p> </td></tr>');
         utils.match_row_height("#multi_slider_table_Expertise", ".slider_target");
       }
 
@@ -444,6 +444,9 @@ this.sentence_types = ["Early", "Late"];
   make_slider_callback_Expertise : function(i) {
       return function(event, ui) {
         exp.sliderPostExpertise[i] = ui.value;
+
+        var sliderValDisplayExpertise = document.getElementById("sliderValDisplayExpertise" + i);
+        sliderValDisplayExpertise.innerHTML = Math.round(ui.value * 100);
       };
     },
 
