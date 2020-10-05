@@ -176,23 +176,24 @@
   		<p>In what year did you begin playing League of Legends?</p>
   		<select id="year_started">
   			<label><option value = "-1"/></label>
-  			<label><option value = "09"/>2009</label>
-  			<label><option value = "10"/>2010</label>
-  			<label><option value = "11"/>2011</label>
-  			<label><option value = "12"/>2012</label>
-  			<label><option value = "13"/>2013</label>
-  			<label><option value = "14"/>2014</label>
-  			<label><option value = "15"/>2015</label>
-  			<label><option value = "16"/>2016</label>
-  			<label><option value = "17"/>2017</label>
-  			<label><option value = "18"/>2018</label>
-  			<label><option value = "19"/>2019</label>
   			<label><option value = "20"/>2020</label>
+  			<label><option value = "19"/>2019</label>
+  			<label><option value = "18"/>2018</label>
+  			<label><option value = "17"/>2017</label>
+  			<label><option value = "16"/>2016</label>
+  			<label><option value = "15"/>2015</label>
+  			<label><option value = "14"/>2014</label>
+  			<label><option value = "13"/>2013</label>
+  			<label><option value = "12"/>2012</label>
+  			<label><option value = "11"/>2011</label>
+  			<label><option value = "10"/>2010</label>
+  			<label><option value = "09"/>2009</label>
   		</select>
 
-  		<p>What league level do you typically play at?</p>
+  		<p>What rank do you typically play at?</p>
   		<select id="league_level">
   			<label><option value = "-1"/></label>
+        <label><option value ="<30"/>Below level 30</label>
   			<label><option value = "Iron"/>Iron</label>
   			<label><option value = "Bronze"/>Bronze</label>
   			<label><option value = "Silver"/>Silver</label>
@@ -214,7 +215,16 @@
   			<label><option value="10,000+"/>10,000+ hrs. (~20,000+ games)</label>
   		</select>
 
-  		<p>In a typical week, how many competitive games do you play?</p><input type = "text" id="games_weekly"/></p>
+  		<p>In a typical week, how many Summoner's Rift games do you play?</p>
+      <select id="games_weekly">
+        <label><option value = "-1"/></label>
+        <label><option value = "1-2"/>1-2</label>
+        <label><option value = "3-5"/>3-5</label>
+        <label><option value = "6-10"/>6-10</label>
+        <label><option value = "11-20"/>11-20</label>
+        <label><option value = "21-40"/>21-40</label>
+        <label><option value = "41+"/>41+</label>
+      </select>
 
   		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of their abilities and how they progress over the course of a game)</p>
   		<select id="champfam_total">
