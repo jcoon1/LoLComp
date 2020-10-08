@@ -477,7 +477,7 @@ this.sentence_types = ["Early", "Late"];
     "league_level" : $("#league_level").val(),
     "hours_total" : $("#hours_total").val(),
     "games_weekly" : $("#games_weekly").val(),
-    "champfam_total" : $("champfam_total").val(),
+    "champfam_total" : $("#champfam_total").val(),
     "hierarch_early" : exp.sliderPostExpertise[0],
     "hierarch_late" : exp.sliderPostExpertise[1]
   }
