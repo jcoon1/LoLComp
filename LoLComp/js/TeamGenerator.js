@@ -531,7 +531,7 @@ for(i = 0;i<num_comps/2;i++){
 }
 
 
-SpeakerStatements = ["would not say","would say"]
+SpeakerStatements = ["would not","would"]
 
 for(i=0;i<num_comps;i++){
 	LoLStimuli[i].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Statement1]
