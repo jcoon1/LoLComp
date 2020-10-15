@@ -1,4 +1,4 @@
-num_comps = 16
+num_comps = 12
 scale_factor = 1
 
 var ChampArray = [
@@ -419,31 +419,52 @@ LoLStimuli = makeLoLStimuli()
 // LoLStimuli[18] = {Blue: [ChampArray[94],ChampArray[55],ChampArray[61],ChampArray[73],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 // LoLStimuli[19] = {Blue: [ChampArray[29],ChampArray[83],ChampArray[30],ChampArray[8],ChampArray[86]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 
-//Mega Early
+// //Original Experiment Selections
+// //Mega Early
+// LoLStimuli[0] = {Blue: [ChampArray[40],ChampArray[62],ChampArray[24],ChampArray[15],ChampArray[12]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[1] = {Blue: [ChampArray[59],ChampArray[83],ChampArray[89],ChampArray[46],ChampArray[142]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Borderline Early
+// LoLStimuli[2] = {Blue: [ChampArray[85],ChampArray[25],ChampArray[81],ChampArray[65],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[3] = {Blue: [ChampArray[95],ChampArray[80],ChampArray[79],ChampArray[46],ChampArray[42]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Borderline Not Early
+// LoLStimuli[4] = {Blue: [ChampArray[133],ChampArray[92],ChampArray[140],ChampArray[46],ChampArray[130]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[5] = {Blue: [ChampArray[103],ChampArray[71],ChampArray[1],ChampArray[27],ChampArray[14]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Mega Not Early
+// LoLStimuli[6] = {Blue: [ChampArray[29],ChampArray[22],ChampArray[98],ChampArray[47],ChampArray[78]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[7] = {Blue: [ChampArray[54],ChampArray[44],ChampArray[21],ChampArray[73],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+
+// //Mega Late
+// LoLStimuli[8] = {Blue: [ChampArray[68],ChampArray[36],ChampArray[84],ChampArray[124],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[9] = {Blue: [ChampArray[85],ChampArray[143],ChampArray[61],ChampArray[7],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Borderline Late
+// LoLStimuli[10] = {Blue: [ChampArray[39],ChampArray[25],ChampArray[112],ChampArray[128],ChampArray[119]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[11] = {Blue: [ChampArray[33],ChampArray[71],ChampArray[130],ChampArray[46],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Borderline Not Late
+// LoLStimuli[12] = {Blue: [ChampArray[87],ChampArray[62],ChampArray[112],ChampArray[49],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[13] = {Blue: [ChampArray[20],ChampArray[25],ChampArray[144],ChampArray[15],ChampArray[100]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// //Mega Not Late
+// LoLStimuli[14] = {Blue: [ChampArray[118],ChampArray[36],ChampArray[61],ChampArray[73],ChampArray[100]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+// LoLStimuli[15] = {Blue: [ChampArray[16],ChampArray[62],ChampArray[86],ChampArray[65],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+
+//Downsized Experiment Selections
 LoLStimuli[0] = {Blue: [ChampArray[40],ChampArray[62],ChampArray[24],ChampArray[15],ChampArray[12]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 LoLStimuli[1] = {Blue: [ChampArray[59],ChampArray[83],ChampArray[89],ChampArray[46],ChampArray[142]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 //Borderline Early
 LoLStimuli[2] = {Blue: [ChampArray[85],ChampArray[25],ChampArray[81],ChampArray[65],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[3] = {Blue: [ChampArray[95],ChampArray[80],ChampArray[79],ChampArray[46],ChampArray[42]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-//Borderline Not Early
-LoLStimuli[4] = {Blue: [ChampArray[133],ChampArray[92],ChampArray[140],ChampArray[46],ChampArray[130]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[5] = {Blue: [ChampArray[103],ChampArray[71],ChampArray[1],ChampArray[27],ChampArray[14]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[3] = {Blue: [ChampArray[133],ChampArray[92],ChampArray[140],ChampArray[46],ChampArray[130]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 //Mega Not Early
-LoLStimuli[6] = {Blue: [ChampArray[29],ChampArray[22],ChampArray[98],ChampArray[47],ChampArray[78]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[7] = {Blue: [ChampArray[54],ChampArray[44],ChampArray[21],ChampArray[73],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[4] = {Blue: [ChampArray[29],ChampArray[22],ChampArray[98],ChampArray[47],ChampArray[78]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[5] = {Blue: [ChampArray[54],ChampArray[44],ChampArray[21],ChampArray[73],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 
 //Mega Late
-LoLStimuli[8] = {Blue: [ChampArray[68],ChampArray[36],ChampArray[84],ChampArray[124],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[9] = {Blue: [ChampArray[85],ChampArray[143],ChampArray[61],ChampArray[7],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[6] = {Blue: [ChampArray[68],ChampArray[36],ChampArray[84],ChampArray[124],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[7] = {Blue: [ChampArray[85],ChampArray[143],ChampArray[61],ChampArray[7],ChampArray[66]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 //Borderline Late
-LoLStimuli[10] = {Blue: [ChampArray[39],ChampArray[25],ChampArray[112],ChampArray[128],ChampArray[119]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[11] = {Blue: [ChampArray[33],ChampArray[71],ChampArray[130],ChampArray[46],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-//Borderline Not Late
-LoLStimuli[12] = {Blue: [ChampArray[87],ChampArray[62],ChampArray[112],ChampArray[49],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[13] = {Blue: [ChampArray[20],ChampArray[25],ChampArray[144],ChampArray[15],ChampArray[100]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[8] = {Blue: [ChampArray[33],ChampArray[71],ChampArray[130],ChampArray[46],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[9] = {Blue: [ChampArray[87],ChampArray[62],ChampArray[112],ChampArray[49],ChampArray[76]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 //Mega Not Late
-LoLStimuli[14] = {Blue: [ChampArray[118],ChampArray[36],ChampArray[61],ChampArray[73],ChampArray[100]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
-LoLStimuli[15] = {Blue: [ChampArray[16],ChampArray[62],ChampArray[86],ChampArray[65],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[10] = {Blue: [ChampArray[118],ChampArray[36],ChampArray[61],ChampArray[73],ChampArray[100]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
+LoLStimuli[11] = {Blue: [ChampArray[16],ChampArray[62],ChampArray[86],ChampArray[65],ChampArray[11]], Red: [ChampArray[0],ChampArray[1],ChampArray[2],ChampArray[3],ChampArray[4]]}
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -476,71 +497,48 @@ function coinFlip() {
     return Math.floor(Math.random() * 2);
 }
 
-StatementCombos = [	{Comp1: [0,0], Comp2: [0,0]},
-					{Comp1: [0,0], Comp2: [0,1]},
-					{Comp1: [0,0], Comp2: [1,0]},
-					{Comp1: [0,0], Comp2: [1,1]},
-					{Comp1: [0,1], Comp2: [0,0]},
-					{Comp1: [0,1], Comp2: [0,1]},
-					{Comp1: [0,1], Comp2: [1,0]},
-					{Comp1: [0,1], Comp2: [1,1]},
-					{Comp1: [1,0], Comp2: [0,0]},
-					{Comp1: [1,0], Comp2: [0,1]},
-					{Comp1: [1,0], Comp2: [1,0]},
-					{Comp1: [1,0], Comp2: [1,1]},
-					{Comp1: [1,1], Comp2: [0,0]},
-					{Comp1: [1,1], Comp2: [0,1]},
-					{Comp1: [1,1], Comp2: [1,0]},
-					{Comp1: [1,1], Comp2: [1,1]}]
+StatementCombos = [	{Statement1: 0, Statement2: 0},
+					{Statement1: 0, Statement2: 1},
+					{Statement1: 0, Statement2: 0},
+					{Statement1: 0, Statement2: 1},
+					{Statement1: 0, Statement2: 0},
+					{Statement1: 0, Statement2: 1} ]
 
-ShuffledCombos = shuffle(StatementCombos)
+ShuffledStarter = shuffle(StatementCombos)
 
-ComboCheckEarly = []
-ComboCheckLate = []
-for(i=0;i<(num_comps/2);i++){
-ComboCheckEarly[i] = ShuffledCombos[i].Comp1[0] + ShuffledCombos[i].Comp2[0]
-ComboCheckLate[i] = ShuffledCombos[i].Comp1[1] + ShuffledCombos[i].Comp2[1]
-}
+ShuffledCombos = []
 
-while(getArraySum(ComboCheckEarly) != getArraySum(ComboCheckLate) || getArraySum(ComboCheckEarly) != 8){
-	ShuffledCombos = shuffle(StatementCombos)
-	ComboCheckEarly = []
-	ComboCheckLate = []
-	for(i=0;i<(num_comps/2);i++){
-		ComboCheckEarly[i] = ShuffledCombos[i].Comp1[0] + ShuffledCombos[i].Comp2[0]
-		ComboCheckLate[i] = ShuffledCombos[i].Comp1[1] + ShuffledCombos[i].Comp2[1]
-	}
-}
-
-SpeakerStatements = ["nothing","that this composition will excel in the laning phase",
-					"nothing","that this composition will excel in the late game"]
-
-for(i=0;i<(num_comps/2);i++){
+for(i = 0;i<num_comps/2;i++){
 	ticker1 = i*2
-	ticker2 = (i*2) + 1
-	flipResult = coinFlip()
-	if(flipResult == 0){
-	LoLStimuli[ticker1].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp1[0]]
-	LoLStimuli[ticker1].EarlyStatementIndex = ShuffledCombos[i].Comp1[0]
-	LoLStimuli[ticker1].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp1[1]+2)]
-	LoLStimuli[ticker1].LateStatementIndex = ShuffledCombos[i].Comp1[1]
-
-	LoLStimuli[ticker2].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp2[0]]
-	LoLStimuli[ticker2].EarlyStatementIndex = ShuffledCombos[i].Comp2[0]
-	LoLStimuli[ticker2].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp2[1]+2)]
-	LoLStimuli[ticker2].LateStatementIndex = ShuffledCombos[i].Comp2[1]
+	ticker2 = (i*2)+1
+	StatementOrder = coinFlip()
+	if(ShuffledStarter[i].Statement2 == 0 && StatementOrder == 0){
+		ShuffledCombos[ticker1] = ShuffledStarter[i]
+		ShuffledCombos[ticker2] = {Statement1: 1, Statement2: 1}
 	}
-	else{
-	LoLStimuli[ticker1].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp2[0]]
-	LoLStimuli[ticker1].EarlyStatementIndex = ShuffledCombos[i].Comp2[0]
-	LoLStimuli[ticker1].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp2[1]+2)]
-	LoLStimuli[ticker1].LateStatementIndex = ShuffledCombos[i].Comp2[1]
-
-	LoLStimuli[ticker2].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Comp1[0]]
-	LoLStimuli[ticker2].EarlyStatementIndex = ShuffledCombos[i].Comp1[0]
-	LoLStimuli[ticker2].LateStatement = SpeakerStatements[(ShuffledCombos[i].Comp1[1]+2)]
-	LoLStimuli[ticker2].LateStatementIndex = ShuffledCombos[i].Comp1[1]
+	if(ShuffledStarter[i].Statement2 == 0 && StatementOrder == 1){
+		ShuffledCombos[ticker2] = ShuffledStarter[i]
+		ShuffledCombos[ticker1] = {Statement1: 1, Statement2: 1}
 	}
+	if(ShuffledStarter[i].Statement2 == 1 && StatementOrder == 0){
+		ShuffledCombos[ticker1] = ShuffledStarter[i]
+		ShuffledCombos[ticker2] = {Statement1: 1, Statement2: 0}
+	}
+	if(ShuffledStarter[i].Statement2 == 1 && StatementOrder == 1){
+		ShuffledCombos[ticker2] = ShuffledStarter[i]
+		ShuffledCombos[ticker1] = {Statement1: 1, Statement2: 0}
+	}
+}
+
+
+SpeakerStatements = ["would not say","would say"]
+
+for(i=0;i<num_comps;i++){
+	LoLStimuli[i].EarlyStatement = SpeakerStatements[ShuffledCombos[i].Statement1]
+	LoLStimuli[i].EarlyStatementIndex = ShuffledCombos[i].Statement1
+	LoLStimuli[i].LateStatement = SpeakerStatements[ShuffledCombos[i].Statement2]
+	LoLStimuli[i].LateStatementIndex = ShuffledCombos[i].Statement2
+
 }
 
 for(i=0;i<num_comps;i++){

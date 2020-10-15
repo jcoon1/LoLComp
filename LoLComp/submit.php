@@ -17,7 +17,7 @@ $jsonObj = json_decode($json);
 
 if ($json != NULL && is_string($json)) {
     print("json valid writing to file");
-    $file = fopen("../../results/LoLCompResults_SAVE_fix.json", "a+");                                                                                           
+    $file = fopen("../../results/LoLCompResults_SAVE_fix_FINAL_shortRT.json", "a+");                                                                                           
     fwrite($file, $json);
     fwrite($file, ",");
     fclose($file);

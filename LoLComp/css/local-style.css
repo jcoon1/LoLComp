@@ -253,10 +253,6 @@ p.ChampFam{
 	bottom: 800px;
 }
 
-p#sliderValDisplayExpertise0{
-	position: relative;
-	bottom: 10px;
-}
 
 p#sliderValDisplayExpertise0{
 	position: relative;
@@ -264,6 +260,16 @@ p#sliderValDisplayExpertise0{
 }
 
 p#sliderValDisplayExpertise1{
+	position: relative;
+	bottom: 10px;
+}
+
+p#sliderValDisplayCritEarly0{
+	position: relative;
+	bottom: 10px;
+}
+
+p#sliderValDisplayCritLate0{
 	position: relative;
 	bottom: 10px;
 }

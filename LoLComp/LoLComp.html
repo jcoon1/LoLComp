@@ -99,13 +99,13 @@
         <button onclick="_s.showButton()" class = "showButton">Continue</button> 
         <p class="err_radio1">Please answer the question.</p>
 
-      <p class = "hidden1"><b>Imagine you are discussing this composition with another player. Do you think it is more appropriate to make the following statements or say nothing?</b></p>
+      <p class = "hidden1"><b>Imagine you are trying to explain this composition to another player. Would you say that...</b></p>
       <p class = "hidden1">"This team composition excels in the laning phase."</p>
-        <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Make the statement</label> 
-        <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>Say nothing</label> 
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Yes</label> 
+        <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>No</label> 
       <p class = "hidden1">"This team composition excels in the late game."</p>
-        <label class = "hidden1"><input type="radio" name="TVJlate" value="1"/>Make the statement</label> 
-        <label class = "hidden1"><input type="radio" name="TVJlate" value="0"/>Say nothing</label> 
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="1"/>Yes</label> 
+        <label class = "hidden1"><input type="radio" name="TVJlate" value="0"/>No</label> 
         <br>
         <br>
     <button onclick="_s.showButton2()" class = "hidden1 showButton2">Continue</button>
@@ -118,14 +118,14 @@
     <button onclick="_s.showButton3()" class = "hidden2 showButton3">Continue</button>
     <div class="err_slider">Please adjust all the sliders before continuing.</div>
 
-     <p class = "hidden3"><b>Imagine an expert player watched this composition play 100 games at Diamond level against various opponents. Based on what they saw, they decided it was <mark><i>more appropriate to say <span class = "EarlyStatement"></span></i></mark> than to say <span class = "Early_counterfact"></span>. <br><br>What would you think the expert is trying to communicate in making this choice? In other words, of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
+     <p class = "hidden3"><b>Imagine an expert player watched this composition play 100 games at Diamond level against various opponents. Based on what they saw, the expert decided they <mark><i><span class = "EarlyStatement"></span></i></mark> that this composition excels in the <mark><i>laning phase.</i></mark> <br><br>What would you think the expert is trying to communicate in making this choice? In other words, of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
      <table id="multi_slider_table_Speaker_Early" class="hidden3 slider_table">
       <tr><td></td><td class="left">0</td><td class="right">100</td></tr>
     </table>
     <button onclick="_s.showButton4()" class = "hidden3 showButton4">Continue</button>
     <div class="err_slider2">Please adjust the slider before continuing.</div>
 
-    <p class = "hidden4"><b>The expert also decided it was <mark><i>more appropriate to say <span class = "LateStatement"></span></i></mark> than to say <span class = "Late_counterfact"></span>. <br><br>What would you think the expert is trying to communicate in making this choice? In other words, of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
+    <p class = "hidden4"><b>The expert also decided that they <mark><i><span class = "LateStatement"></span></i></mark> that this composition excels in the <mark><i>late game.</i></mark> What would you think the expert is trying to communicate in making this choice? In other words, of the 100 games witnessed by the expert, in how many of those games do you think this composition...</b></p>
      <table id="multi_slider_table_Speaker_Late" class="hidden4 slider_table">
       <tr><td></td><td class="left">0</td><td class="right">100</td></tr>
     </table>
@@ -236,7 +236,17 @@
   			<label><option value = "121-150"/>121-150</label>
   		</select>
 
-  		<p>If you saw a "typical" team composition play 100 games, in how many of those games would you expect it to...</p>
+      <p>If you saw 100 games of a composition playing against various opponents, in how many of those games (minimum) would you need to see it excel in the <i><mark>laning phase</mark></i> for you to say, "this composition excels in the laning phase"?</p>
+      <table id="multi_slider_table_CritEarly" class="slider_table"> 
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+
+      <p>In how many of those games (minimum) would you need to see it excel in the <i><mark>late game</mark></i> for you to say, "this composition excels in the late game"?</p>
+      <table id="multi_slider_table_CritLate" class="slider_table"> 
+      <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
+    </table>
+
+  		<p>If you saw a "typical" team composition play 100 games against various opponents, in how many of those games would you expect it to...</p>
   		<table id="multi_slider_table_Expertise" class="slider_table"> 
       <tr><td></td><td class="left">none</td><td class="right">all</td></tr>
     </table>

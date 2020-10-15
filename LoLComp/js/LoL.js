@@ -137,6 +137,7 @@ function make_slides(f) {
       // $(".showButton").show();
 
       this.stim = stim; //I like to store this information in the slide so I can record it later.
+      this.startTime = Date.now();
 
       $(".BlueTeamLabel").html("Blue Team");
       $(".RedTeamLabel").html("Red Team");
@@ -366,6 +367,7 @@ function make_slides(f) {
       if(ok_to_go_on){
       	var end_time = Date.now();
         this.time_spent = end_time - this.start_time;
+        this.RT = (Date.now() - this.startTime) / 1000; // record time spent on trial
         this.log_responses();
         $(".showButton").show();
         _stream.apply(this); //make sure this is at the *end*, after you log your data
@@ -403,7 +405,9 @@ function make_slides(f) {
         "speaker_excel_late": exp.sliderPostSpeaker_Late[0],
         "ChampFam" : $('input[name=ChampFam]:checked').val(), //if using radio buttons
         "TVJearly" : $('input[name=TVJearly]:checked').val(), //if using radio buttons
-        "TVJlate" : $('input[name=TVJlate]:checked').val() //if using radio buttons
+        "TVJlate" : $('input[name=TVJlate]:checked').val(), //if using radio buttons
+        "RT": this.RT
+
       });
     }
   });
@@ -416,28 +420,74 @@ slides.expertise = slide({
 present_handle : function(stim){
 $(".err_mega").hide();
 
-this.sentence_types = ["Early", "Late"];
-      var sentences = {
+this.sentence_types_Expertise = ["Early", "Late"];
+      var sentences_Expertise = {
         "Early": "...excel in the laning phase?",
         "Late": "...excel in the late game?",
       };
-      this.n_sliders_Expertise = this.sentence_types.length;
+      this.n_sliders_Expertise = this.sentence_types_Expertise.length;
       $(".slider_row_Expertise").remove();
       for (var i=0; i<this.n_sliders_Expertise; i++) {
-        var sentence_type = this.sentence_types[i];
-        var sentence = sentences[sentence_type];
+        var sentence_type_Expertise = this.sentence_types_Expertise[i];
+        var sentence_Expertise = sentences_Expertise[sentence_type_Expertise];
 
-        $("#multi_slider_table_Expertise").append('<tr class="slider_row_Expertise"><td class="slider_target" id="objectExpertise' + i + '">' + sentence + '</td><td colspan="2"><div id="sliderExpertise' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayExpertise' + i + '"> _ </p> </td></tr>');
+        $("#multi_slider_table_Expertise").append('<tr class="slider_row_Expertise"><td class="slider_target" id="objectExpertise' + i + '">' + sentence_Expertise + '</td><td colspan="2"><div id="sliderExpertise' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayExpertise' + i + '"> _ </p> </td></tr>');
         utils.match_row_height("#multi_slider_table_Expertise", ".slider_target");
       }
 
-      this.init_sliders_Expertise(this.sentence_types);
+      this.init_sliders_Expertise(this.sentence_types_Expertise);
       exp.sliderPostExpertise = [];
+
+this.sentence_types_CritEarly = ["Early"];
+      var sentences_CritEarly = {
+        "Early": " ",
+      };
+      this.n_sliders_CritEarly = this.sentence_types_CritEarly.length;
+      $(".slider_row_CritEarly").remove();
+      for (var i=0; i<this.n_sliders_CritEarly; i++) {
+        var sentence_type_CritEarly = this.sentence_types_CritEarly[i];
+        var sentence_CritEarly = sentences_CritEarly[sentence_type_CritEarly];
+
+        $("#multi_slider_table_CritEarly").append('<tr class="slider_row_CritEarly"><td class="slider_target" id="objectCritEarly' + i + '">' + sentence_CritEarly + '</td><td colspan="2"><div id="sliderCritEarly' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayCritEarly' + i + '"> _ </p> </td></tr>');
+        utils.match_row_height("#multi_slider_table_CritEarly", ".slider_target");
+      }
+
+      this.init_sliders_CritEarly(this.sentence_types_CritEarly);
+      exp.sliderPostCritEarly = [];
+
+this.sentence_types_CritLate = ["Late"];
+      var sentences_CritLate = {
+        "Late": " ",
+      };
+      this.n_sliders_CritLate = this.sentence_types_CritLate.length;
+      $(".slider_row_CritLate").remove();
+      for (var i=0; i<this.n_sliders_CritLate; i++) {
+        var sentence_type_CritLate = this.sentence_types_CritLate[i];
+        var sentence_CritLate = sentences_CritLate[sentence_type_CritLate];
+
+        $("#multi_slider_table_CritLate").append('<tr class="slider_row_CritLate"><td class="slider_target" id="objectCritLate' + i + '">' + sentence_CritLate + '</td><td colspan="2"><div id="sliderCritLate' + i + '" class="slider">-------[ ]--------</div></td> <td colspan=1><p id="sliderValDisplayCritLate' + i + '"> _ </p> </td></tr>');
+        utils.match_row_height("#multi_slider_table_CritLate", ".slider_target");
+      }
+
+      this.init_sliders_CritLate(this.sentence_types_CritLate);
+      exp.sliderPostCritLate = [];
   },
 
   init_sliders_Expertise : function() {
-      for (var i=0; i<this.sentence_types.length; i++) {
+      for (var i=0; i<this.sentence_types_Expertise.length; i++) {
          utils.make_slider("#sliderExpertise" + i, this.make_slider_callback_Expertise(i));
+      }
+    },
+
+  init_sliders_CritEarly : function() {
+      for (var i=0; i<this.sentence_types_CritEarly.length; i++) {
+         utils.make_slider("#sliderCritEarly" + i, this.make_slider_callback_CritEarly(i));
+      }
+    },
+
+  init_sliders_CritLate : function() {
+      for (var i=0; i<this.sentence_types_CritLate.length; i++) {
+         utils.make_slider("#sliderCritLate" + i, this.make_slider_callback_CritLate(i));
       }
     },
 
@@ -450,14 +500,45 @@ this.sentence_types = ["Early", "Late"];
       };
     },
 
+  make_slider_callback_CritEarly : function(i) {
+      return function(event, ui) {
+        exp.sliderPostCritEarly[i] = ui.value;
+
+        var sliderValDisplayCritEarly = document.getElementById("sliderValDisplayCritEarly" + i);
+        sliderValDisplayCritEarly.innerHTML = Math.round(ui.value * 100);
+      };
+    },
+
+  make_slider_callback_CritLate : function(i) {
+      return function(event, ui) {
+        exp.sliderPostCritLate[i] = ui.value;
+
+        var sliderValDisplayCritLate = document.getElementById("sliderValDisplayCritLate" + i);
+        sliderValDisplayCritLate.innerHTML = Math.round(ui.value * 100);
+      };
+    },
+
     megaButton : function(){
-        var ok_to_go_on = true
+        var ok_to_go_on1 = true
+        var ok_to_go_on2 = true
+        var ok_to_go_on3 = true
         for (var i=0; i<this.n_sliders_Expertise; i++) {
         if (exp.sliderPostExpertise[i]==undefined){
-          ok_to_go_on = false
+          ok_to_go_on1 = false
         }
       }
-      if(ok_to_go_on && $("#year_started").val()!="-1" && $("#league_level").val()!= "-1" && $("#hours_total").val()!= "-1"
+        for (var i=0; i<this.n_sliders_CritEarly; i++) {
+        if (exp.sliderPostCritEarly[i]==undefined){
+          ok_to_go_on2 = false
+        }
+      }
+        for (var i=0; i<this.n_sliders_CritLate; i++) {
+        if (exp.sliderPostCritLate[i]==undefined){
+          ok_to_go_on3 = false
+        }
+      }
+      if(ok_to_go_on1 && ok_to_go_on2 && ok_to_go_on3
+        && $("#year_started").val()!="-1" && $("#league_level").val()!= "-1" && $("#hours_total").val()!= "-1"
         && $("#games_weekly").val()!=undefined && $("#champfam_total").val()!="-1"){
         var end_time = Date.now();
         this.time_spent = end_time - this.start_time;
@@ -478,6 +559,8 @@ this.sentence_types = ["Early", "Late"];
     "hours_total" : $("#hours_total").val(),
     "games_weekly" : $("#games_weekly").val(),
     "champfam_total" : $("#champfam_total").val(),
+    "criteria_early" : exp.sliderPostCritEarly[0],
+    "criteria_late" : exp.sliderPostCritLate[0],
     "hierarch_early" : exp.sliderPostExpertise[0],
     "hierarch_late" : exp.sliderPostExpertise[1]
   }
