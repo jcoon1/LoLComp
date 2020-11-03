@@ -48,7 +48,7 @@
 
     <img src="../_shared/images/sarneckalogo.png" alt="UCI Sarnecka Lab" id="cocologo"></img>
     <p id="cocolab">UC-Irvine Sarnecka Lab</p>
-    <p id="instruct-text">You will be shown some League of Legends team compositions and asked to evaluate how the subsequent game would play out. The task should take approximately 20 minutes.</p>
+    <p id="instruct-text">You will be shown some League of Legends team compositions and asked to evaluate how each composition would generally perform. The task should take approximately 20 minutes.</p>
     <p>Please pay attention, thanks!</p>
     <button id="start_button" type="button">Start Experiment</button>
     <p id="legal">Legal information: By answering the following questions, you are participating in a study being performed by scientists in the UC Irvine Department of Cognitive Sciences. If you have questions about this research, please contact Jeff Coon at <a href="mailto://jcoon1@uci.edu">jcoon1@uci.edu</a> or Barbara Sarnecka, at sarnecka@uci.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences.</p>
@@ -58,7 +58,7 @@
   <div class="slide" id="instructions">
     <h3>Instructions</h3>
     <p>Please only take this survey once. Taking the experiment multiple times will lead us to incorrectly assume different people agree on their responses.</p>
-    <p>If you aren’t completely sure of your answer, take your best guess.</p>
+    <p>If you aren’t completely sure of your answer, take your best guess. <i> Make sure to hit "Submit" at the end of the survey so that your responses are recorded.</i></p>
 
     <button onclick="_s.button()">Continue</button>
   </div>
@@ -85,7 +85,7 @@
 
         <p class = "SkillControl"><i>Please assume this team composition is being used at Diamond level and that all players are using their preferred champions.</i></p>
 
-        <p class = "ChampFam"><b>How many of these champions are you familiar with?</b> <br>(Meaning you have a decent idea of their abilities and how they progress over the course of a game)</p>
+        <p class = "ChampFam"><b>How many of these champions are you familiar with?</b> <br>(Meaning you have a decent idea of how strong they are in early, mid, and late game)</p>
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="0"/>0</label> 
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="1"/>1</label> 
         <label class = "Q0radio"><input type="radio" name="ChampFam" value="2"/>2</label> 
@@ -99,7 +99,7 @@
         <button onclick="_s.showButton()" class = "showButton">Continue</button> 
         <p class="err_radio1">Please answer the question.</p>
 
-      <p class = "hidden1"><b>Imagine you are trying to explain this composition to another player. Would you say that...</b></p>
+      <p class = "hidden1"><b>Imagine you are trying to explain this composition to another player. Would you say...</b></p>
       <p class = "hidden1">"This team composition excels in the laning phase."</p>
         <label class = "hidden1"><input type="radio" name="TVJearly" value="1"/>Yes</label> 
         <label class = "hidden1"><input type="radio" name="TVJearly" value="0"/>No</label> 
@@ -218,6 +218,7 @@
   		<p>In a typical week, how many Summoner's Rift games do you play?</p>
       <select id="games_weekly">
         <label><option value = "-1"/></label>
+        <label><option value = "0"/>0</label>
         <label><option value = "1-2"/>1-2</label>
         <label><option value = "3-5"/>3-5</label>
         <label><option value = "6-10"/>6-10</label>
@@ -226,7 +227,7 @@
         <label><option value = "41+"/>41+</label>
       </select>
 
-  		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of their abilities and how they progress over the course of a game)</p>
+  		<p> Approximately how many of the 150 champions are you familiar with? (Meaning you have a decent idea of how strong they are in early, mid, and late game)</p>
   		<select id="champfam_total">
   			<label><option value = "-1"/></label>
   			<label><option value = "0-30"/>0-30</label>
@@ -264,6 +265,7 @@
     <div class="long_form">
       <div class="subj_info_title">Additional information</div>
       <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p><i><b>Whether you choose to answer or not, please make sure to hit "Submit" so that your responses to this survey are recorded.</i></b></p>
 
 
 <!--       <p>Did you read the instructions and do you think you did the HIT correctly?</p>
