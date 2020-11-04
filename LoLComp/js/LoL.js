@@ -252,7 +252,8 @@ function make_slides(f) {
         $(".showButton").hide();
         // $(".radio").show();
         $(".hidden1").show();
-        $(".err_radio1").hide();                   
+        $(".err_radio1").hide();
+        $(".hiddenarrow").hide();                    
         }
 
         /* use _stream.apply(this); if and only if there is
@@ -370,6 +371,7 @@ function make_slides(f) {
         this.RT = (Date.now() - this.startTime) / 1000; // record time spent on trial
         this.log_responses();
         $(".showButton").show();
+        $(".hiddenarrow").show();
         _stream.apply(this); //make sure this is at the *end*, after you log your data
       }
       	else {

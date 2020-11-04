@@ -273,3 +273,8 @@ p#sliderValDisplayCritLate0{
 	position: relative;
 	bottom: 10px;
 }
+
+p.hiddenarrow{
+	position: relative;
+	bottom: 200px;
+}
