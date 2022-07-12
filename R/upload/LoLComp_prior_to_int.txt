@@ -1,0 +1,21 @@
+# LoL Comp
+# Linear mixed-effect model (prior predicting interpretation)
+
+
+model{
+
+    	sigma ~ dgamma(1.5,2)
+	s = pow(sigma,-2)
+	mu = rep(.5,nBeta)
+	BETA ~ dmnorm(mu,bPrec)
+	tau ~ dgamma(1.5,2)
+	t= pow(tau,-2)
+  for (i in 1:nParticipants){
+	alpha[i] ~ dnorm(0,t)
+  }
+  for (i in 1:total_priors){
+    	Y[i] ~ dnorm(inprod(BETA, X[i,]) + alpha[Participant_list[i]],s)
+	Ypred[i] ~ dnorm(inprod(BETA, X[i,]) + alpha[Participant_list[i]],s)
+
+  }
+}

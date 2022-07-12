@@ -1,0 +1,40 @@
+# LoL Comp
+# Linear mixed-effect model (prior predicting interpretation)
+
+
+model{
+
+    	sigma ~ dgamma(1.5,2)
+	s = pow(sigma,-2)
+	mu1 = rep(.5,nBeta)
+	mu2 = rep(.5,nBeta)
+	mu3 = rep(.5,nBeta)
+	mu4 = rep(.5,nBeta)
+	BETA_agree1 ~ dmnorm(mu1,bPrec)
+	BETA_agree2 ~ dmnorm(mu2,bPrec)
+	BETA_disagree1 ~ dmnorm(mu3,bPrec)
+	BETA_disagree2 ~ dmnorm(mu4,bPrec)
+	tau ~ dgamma(1.5,2)
+	t= pow(tau,-2)
+	phi_agree ~ dunif(0,1)
+	phi_disagree ~ dunif(0,1)
+
+  for (i in 1:nParticipants){
+	alpha[i] ~ dnorm(0,t)
+	psi_agree[i] ~ dbern(phi_agree)
+	psi_disagree[i] ~ dbern(phi_disagree)
+
+	for(j in 1:nTrials){
+	    	Y[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA_agree1, X_agree[j+((i-1)*nTrials),])*equals(psi_agree[i],1) 
+		+ inprod(BETA_agree2, X_agree[j+((i-1)*nTrials),])*equals(psi_agree[i],0)
+		+ inprod(BETA_disagree1, X_disagree[j+((i-1)*nTrials),])*equals(psi_disagree[i],1) 
+		+ inprod(BETA_disagree2, X_disagree[j+((i-1)*nTrials),])*equals(psi_disagree[i],0) 
+		+ alpha[i],s)
+		Ypred[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA_agree1, X_agree[j+((i-1)*nTrials),])*equals(psi_agree[i],1) 
+		+ inprod(BETA_agree2, X_agree[j+((i-1)*nTrials),])*equals(psi_agree[i],0)
+		+ inprod(BETA_disagree1, X_disagree[j+((i-1)*nTrials),])*equals(psi_disagree[i],1) 
+		+ inprod(BETA_disagree2, X_disagree[j+((i-1)*nTrials),])*equals(psi_disagree[i],0) 
+		+ alpha[i],s)
+	}
+  }
+}

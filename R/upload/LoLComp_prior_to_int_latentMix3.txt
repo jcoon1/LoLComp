@@ -1,0 +1,73 @@
+# LoL Prior --> Interpretation linear mixed effect model
+# Latent mixture allowing for both two types of agreers and two types of disagreers
+# (by participant, but not necessarily in tandem; 4 possible combinations)
+
+model{
+
+    	sigma ~ dgamma(1.5,2)
+	s = pow(sigma,-2)
+	mu1 = rep(.5,nBeta)
+	mu2 = rep(.5,nBeta)
+	mu3 = rep(.5,nBeta)
+	mu4 = rep(.5,nBeta)
+
+	BETA_agree1_temp ~ dmnorm(mu1,bPrec)
+	BETA_agree2_temp ~ dmnorm(mu2,bPrec)
+	indicator1_agree <- ifelse(BETA_agree1_temp[2]>BETA_agree2_temp[2],1,0)
+	indicator2_agree <- ifelse(BETA_agree1_temp[2]>BETA_agree2_temp[2],0,1)
+	for(i in 1:nBeta){
+		BETA_agree1[i] <- BETA_agree1_temp[i]*indicator1_agree + 
+			BETA_agree2_temp[i]*indicator2_agree
+		BETA_agree2[i] <- BETA_agree1_temp[i]*(1-indicator1_agree) + 
+			BETA_agree2_temp[i]*(1-indicator2_agree)
+	}
+
+	BETA_disagree1_temp ~ dmnorm(mu3,bPrec)
+	BETA_disagree2_temp ~ dmnorm(mu4,bPrec)
+	indicator1_disagree <- ifelse(BETA_disagree1_temp[2]>BETA_disagree2_temp[2],1,0)
+	indicator2_disagree <- ifelse(BETA_disagree1_temp[2]>BETA_disagree2_temp[2],0,1)
+	for(i in 1:nBeta){
+		BETA_disagree1[i] <- BETA_disagree1_temp[i]*indicator1_disagree + BETA_disagree2_temp[i]*indicator2_disagree
+		BETA_disagree2[i] <- BETA_disagree1_temp[i]*(1-indicator1_disagree) + 
+			BETA_disagree2_temp[i]*(1-indicator2_disagree)
+	}
+	tau ~ dgamma(1.5,2)
+	t= pow(tau,-2)
+
+	phi_agree ~ dunif(0,1)
+	sigma_psi_agree ~ dgamma(1.5,2)
+	s_psi_agree = pow(sigma_psi_agree,-2)
+
+	phi_disagree ~ dunif(0,1)
+	sigma_psi_disagree ~ dgamma(1.5,2)
+	s_psi_disagree = pow(sigma_psi_disagree,-2)
+
+  for (i in 1:nParticipants){
+	alpha[i] ~ dnorm(0,t)
+	psi_agree[i] ~ dnorm(phi_agree,s_psi_agree)T(0,1)
+	psi_disagree[i] ~ dnorm(phi_agree,s_psi_disagree)T(0,1)
+
+	for(j in 1:nTrials){
+		psi_agree_bern[j+((i-1)*nTrials)] ~ dbern(psi_agree[i])
+		psi_disagree_bern[j+((i-1)*nTrials)] ~ dbern(psi_disagree[i])
+	    	Y[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA_agree1, X_agree[j+((i-1)*nTrials),])
+			*equals(psi_agree_bern[j+((i-1)*nTrials)],1)
+			+ inprod(BETA_agree2, X_agree[j+((i-1)*nTrials),])
+			*equals(psi_agree_bern[j+((i-1)*nTrials)],0)
+			+ inprod(BETA_disagree1, X_disagree[j+((i-1)*nTrials),])
+			*equals(psi_disagree_bern[j+((i-1)*nTrials)],1)
+			+ inprod(BETA_disagree2, X_disagree[j+((i-1)*nTrials),])
+			*equals(psi_disagree_bern[j+((i-1)*nTrials)],0)
+			+ alpha[i],s)
+		Ypred[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA_agree1, X_agree[j+((i-1)*nTrials),])
+			*equals(psi_agree_bern[j+((i-1)*nTrials)],1)
+			+ inprod(BETA_agree2, X_agree[j+((i-1)*nTrials),])
+			*equals(psi_agree_bern[j+((i-1)*nTrials)],0)
+			+ inprod(BETA_disagree1, X_disagree[j+((i-1)*nTrials),])
+			*equals(psi_disagree_bern[j+((i-1)*nTrials)],1)
+			+ inprod(BETA_disagree2, X_disagree[j+((i-1)*nTrials),])
+			*equals(psi_disagree_bern[j+((i-1)*nTrials)],0)
+			+ alpha[i],s)
+	}
+  }
+}
