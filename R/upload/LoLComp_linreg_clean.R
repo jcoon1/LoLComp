@@ -1,7 +1,7 @@
 # clears workspace:  
 rm(list=ls()) 
 
-setwd('C:/Users/Jeff/Documents/R/LoLComp/upload')
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 library(tidyverse)
 library(BayesFactor)
