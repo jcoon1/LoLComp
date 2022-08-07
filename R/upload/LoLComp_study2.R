@@ -6,6 +6,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #load("LoLComp_study2.RData")
 
 load("splitsig.RData")
+library(purrr)
 
 library(tidyverse)
 library(BayesFactor)
@@ -239,3 +240,98 @@ legend(.005,.98,legend = c('Empirical','Inferred',"Naive Interpretation"),
 title(main=" ", line=.5, cex.main=1.8)
 title(ylab="Endorsement Rate", line=1.6, cex.lab=1.8)
 title(xlab="Estimated Applicability", line=1.8, cex.lab=1.8)
+
+
+# Marginal Simulation -----------------------------------------------------
+
+nSim <- 10000
+
+beta_x <- seq(.01,4,.01)
+
+y <- (1.083*beta_x)/((4.339*beta_x^2)*(2.083*beta_x+1))
+
+y_diff <- abs(y - .044)
+
+beta_answer <- beta_x[which(y_diff==min(y_diff))]
+
+alpha_answer <- beta_answer * 1.083
+
+hist(c(p), freq = F,breaks = 20)
+curve(dbeta(x, alpha_answer, beta_answer),from = 0, to =1,add=T)
+
+curve(dbeta(x, 3.2, 2.8),from = 0, to =1,add=T)
+
+input_prob <- rbeta(nSim,alpha_answer,beta_answer)
+
+input_logodds <- log(input_prob/(1-input_prob))
+
+output_prob <- rep(NaN,nSim*nSim)
+
+ticker = 1
+for(i in 1:nSim){
+  for(j in 1:nSim){
+    parameter_index <- round(runif(1,min = 1, max = nrow(alphaGrand_linking)))
+    
+    alpha_temp <- alphaGrand_linking[parameter_index,1]
+    beta_temp <- betaGrand_linking[parameter_index,1]
+    
+    prob_gen <- 1/(1 + exp(-beta_temp*(input_logodds[i]-alpha_temp)))
+    outcome <- rbernoulli(1,p = prob_gen)
+    
+    if(outcome==1){
+      output_prob[ticker] <- input_prob[i]
+      ticker = ticker+1
+    }
+  }
+}
+
+output_prob_clean_index <- min(which(is.na(output_prob)))-1
+
+output_prob_clean <- output_prob[1:output_prob_clean_index]
+
+
+# Marginal Sim part 2 -----------------------------------------------------
+
+betaSplitsamples <- c(rawBetayesEarlysamples[,1],rawBetayesLatesamples[,1])
+
+c1 <- rgb(173,216,230,max = 255, alpha = 130, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 100, names = "lt.pink")
+
+pick_output <- round(runif(length(betaSplitsamples),min=1,max=length(output_prob_clean)))
+
+output_prob_plot <- output_prob_clean[pick_output]
+
+b <- min(c(output_prob_plot,betaSplitsamples)) - 0.001 # Set the minimum for the breakpoints
+e <- max(c(output_prob_plot,betaSplitsamples)) # Set the maximum for the breakpoints
+ax <- pretty(b:e, n = 100) # Make a neat vector for the breakpoints
+hist1 <- hist(output_prob_plot)
+hist2 <- hist(betaSplitsamples)
+par(mfrow=c(1,1))
+#par(mar = c(5, 4, 1, 2))
+plot(hist1,col = c1,ylim = c(0,500),xlim = c(0,1),xlab = 'Interpretation',main = "Speaker vs. Listener",
+     axes = FALSE)
+plot(hist2,col = c2,add=TRUE)
+abline(v=0,lty=3)
+axis(side = 2, pos= 0)
+axis(side = 1, pos=0)
+
+nSim = 10000
+
+counter = 1
+
+for(i in 1:nSim){
+  speaker_sample <- round(runif(1,min=1,max=length(output_prob_plot)))
+  listener_sample <- round(runif(1,min=1,max=length(betaSplitsamples)))
+  
+  if(output_prob_plot[speaker_sample]<betaSplitsamples[listener_sample]){
+    counter = counter+1
+  }
+}
+
+prob_marginal = counter/nSim
+
+odds_marginal = prob_marginal/(1-prob_marginal)
+
+odds_prior = .5/(1-.5)
+
+BF_marginal = odds_marginal/odds_prior
