@@ -1,0 +1,19 @@
+# Verhulst logistic growth model
+# input nExp (number of participants), p (prior estimate), y (TVJ), nReps (trials per participant)
+model{
+ betaGrand ~ dnorm(5, 1/20^2)T(0,)
+ alphaGrand ~ dnorm(0,1/2^2)
+
+alpha_sigma ~ dnorm(0,1/1^2)T(0,)
+beta_sigma ~ dnorm(0,1/10^2)T(0,)
+    for(i in 1:nExp){
+	betaDelta[i] ~ dnorm(0, 1/beta_sigma^2)
+  	alphaDelta[i] ~ dnorm(0, 1/alpha_sigma^2)
+	alpha[i] = alphaGrand + alphaDelta[i]
+	beta[i] = betaGrand + betaDelta[i]
+	   for (j in 1:nReps){
+    		theta[(i-1)*nReps+j] = max(0.01, min(0.99, 1/(1+exp(-beta[i]*(log(p[(i-1)*nReps+j])-log(1-p[(i-1)*nReps+j])-alpha[i])))))
+    		y[(i-1)*nReps+j] ~ dbern(theta[(i-1)*nReps+j])
+ 	   }
+	}
+}
