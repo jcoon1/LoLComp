@@ -297,7 +297,9 @@ betaSplitsamples <- c(rawBetayesEarlysamples[,1],rawBetayesLatesamples[,1])
 c1 <- rgb(173,216,230,max = 255, alpha = 130, names = "lt.blue")
 c2 <- rgb(255,192,203, max = 255, alpha = 100, names = "lt.pink")
 
-pick_output <- round(runif(length(betaSplitsamples),min=1,max=length(output_prob_clean)))
+SONA_comp <- c(SONAData$EarlyResponse[which(SONAData$SpeakerEarly==1)],SONAData$LateResponse[which(SONAData$SpeakerLate==1)])
+
+pick_output <- round(runif(length(SONA_comp),min=1,max=length(output_prob_clean)))
 
 output_prob_plot <- output_prob_clean[pick_output]
 
@@ -305,10 +307,11 @@ b <- min(c(output_prob_plot,betaSplitsamples)) - 0.001 # Set the minimum for the
 e <- max(c(output_prob_plot,betaSplitsamples)) # Set the maximum for the breakpoints
 ax <- pretty(b:e, n = 100) # Make a neat vector for the breakpoints
 hist1 <- hist(output_prob_plot)
-hist2 <- hist(betaSplitsamples)
+# hist2 <- hist(betaSplitsamples[,1])
+hist2 <- hist(c(SONAData$EarlyResponse[which(SONAData$SpeakerEarly==1)],SONAData$LateResponse[which(SONAData$SpeakerLate==1)]))
 par(mfrow=c(1,1))
 #par(mar = c(5, 4, 1, 2))
-plot(hist1,col = c1,ylim = c(0,500),xlim = c(0,1),xlab = 'Interpretation',main = "Speaker vs. Listener",
+plot(hist1,col = c1,ylim = c(0,200),xlim = c(0,1),xlab = 'Interpretation',main = "Speaker vs. Listener",
      axes = FALSE)
 plot(hist2,col = c2,add=TRUE)
 abline(v=0,lty=3)
