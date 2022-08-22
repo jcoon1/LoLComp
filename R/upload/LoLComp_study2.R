@@ -338,3 +338,213 @@ odds_marginal = prob_marginal/(1-prob_marginal)
 odds_prior = .5/(1-.5)
 
 BF_marginal = odds_marginal/odds_prior
+
+
+# Absolute distance simulation --------------------------------------------
+
+exp_statement_pool <- c(OnlineData$EarlyResponse[which(OnlineData$EarlyTVJ==1)],
+                           OnlineData$LateResponse[which(OnlineData$LateTVJ==1)])
+
+nov_interpret_pool <- c(SONAData$EarlyResponse[which(SONAData$SpeakerEarly==1)],
+                        SONAData$LateResponse[which(SONAData$SpeakerLate==1)])
+
+nPulls <- 300
+
+diff_raw <- matrix(nrow = length(exp_statement_pool),ncol = nPulls)
+
+for(i in 1:length(exp_statement_pool)){
+  for(j in 1:nPulls){
+    nov_index <- round(runif(1,min = 1, max = length(nov_interpret_pool)))
+    diff_raw[i,j] <- nov_interpret_pool[nov_index] - exp_statement_pool[i]
+  }
+}
+
+diff_plot <- matrix(nrow = length(exp_statement_pool),ncol = 4)
+
+diff_plot[,1] <- exp_statement_pool
+
+nSamples = 50
+
+for(i in 1:length(exp_statement_pool)){
+  diff_plot[i,2] <- mean(diff_raw[i,])
+  diff_plot[i,3:4] <- BootstrapMean95(diff_raw[i,],nSamples,nIterations)
+}
+plot(diff_plot[,1],diff_plot[,2],xlim = c(0,1),ylim = c(-1,1),xlab = "Speaker Belief",ylab="Listener - Speaker", col = rgb(0,0,0,.08))
+
+for(i in 1:nrow(diff_plot)){
+  arrows(x0 = diff_plot[i,1], y0 = diff_plot[i,3],
+        x1 = diff_plot[i,1], y1 = diff_plot[i,4],code = 3,
+        lwd = 1, angle = 90, length = .1,lty=1, col = rgb(0,0,0,.08))
+}
+
+abline(v = .5,lty = 2)
+abline(h = 0, lty = 2)
+
+abs_diff_raw <- matrix(nrow = length(exp_statement_pool),ncol = nPulls)
+
+for(i in 1:length(exp_statement_pool)){
+  for(j in 1:nPulls){
+    nov_index <- round(runif(1,min = 1, max = length(nov_interpret_pool)))
+    abs_diff_raw[i,j] <- abs(nov_interpret_pool[nov_index] - exp_statement_pool[i])
+  }
+}
+
+abs_diff_plot <- matrix(nrow = length(exp_statement_pool),ncol = 4)
+
+abs_diff_plot[,1] <- exp_statement_pool
+
+nSamples = 50
+
+for(i in 1:length(exp_statement_pool)){
+  abs_diff_plot[i,2] <- mean(abs_diff_raw[i,])
+  abs_diff_plot[i,3:4] <- BootstrapMean95(abs_diff_raw[i,],nSamples,nIterations)
+}
+plot(abs_diff_plot[,1],abs_diff_plot[,2],xlim = c(0,1),ylim = c(0,1),xlab = "Speaker Belief",ylab="abs(Listener - Speaker)", col = rgb(0,0,0,.08))
+
+for(i in 1:nrow(abs_diff_plot)){
+  arrows(x0 = abs_diff_plot[i,1], y0 = abs_diff_plot[i,3],
+         x1 = abs_diff_plot[i,1], y1 = abs_diff_plot[i,4],code = 3,
+         lwd = 1, angle = 90, length = .1,lty=1, col = rgb(0,0,0,.08))
+}
+
+abline(v = .5,lty = 2)
+                           
+hist(diff_raw)
+abline(v = mean(diff_raw),lty = 2)
+
+
+# Experienced Distance Simulation -----------------------------------------
+
+comp1_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==1),]
+comp1_speaker_pool <- c(comp1_speaker_pool_temp$EarlyPrior[which(comp1_speaker_pool_temp$EarlyTVJ==1)],
+                        comp1_speaker_pool_temp$LatePrior[which(comp1_speaker_pool_temp$LateTVJ==1)])
+comp1_speaker_par <- c(comp1_speaker_pool_temp$Participant[which(comp1_speaker_pool_temp$EarlyTVJ==1)],
+                        comp1_speaker_pool_temp$Participant[which(comp1_speaker_pool_temp$LateTVJ==1)])
+comp1_full_pool <- cbind(comp1_speaker_pool,comp1_speaker_par)
+
+
+comp2_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==2),]
+comp2_speaker_pool <- c(comp2_speaker_pool_temp$EarlyPrior[which(comp2_speaker_pool_temp$EarlyTVJ==1)],
+                        comp2_speaker_pool_temp$LatePrior[which(comp2_speaker_pool_temp$LateTVJ==1)])
+comp2_speaker_par <- c(comp2_speaker_pool_temp$Participant[which(comp2_speaker_pool_temp$EarlyTVJ==1)],
+                       comp2_speaker_pool_temp$Participant[which(comp2_speaker_pool_temp$LateTVJ==1)])
+comp2_full_pool <- cbind(comp2_speaker_pool,comp2_speaker_par)
+
+comp3_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==3),]
+comp3_speaker_pool <- c(comp3_speaker_pool_temp$EarlyPrior[which(comp3_speaker_pool_temp$EarlyTVJ==1)],
+                        comp3_speaker_pool_temp$LatePrior[which(comp3_speaker_pool_temp$LateTVJ==1)])
+comp3_speaker_par <- c(comp3_speaker_pool_temp$Participant[which(comp3_speaker_pool_temp$EarlyTVJ==1)],
+                       comp3_speaker_pool_temp$Participant[which(comp3_speaker_pool_temp$LateTVJ==1)])
+comp3_full_pool <- cbind(comp3_speaker_pool,comp3_speaker_par)
+
+comp4_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==4),]
+comp4_speaker_pool <- c(comp4_speaker_pool_temp$EarlyPrior[which(comp4_speaker_pool_temp$EarlyTVJ==1)],
+                        comp4_speaker_pool_temp$LatePrior[which(comp4_speaker_pool_temp$LateTVJ==1)])
+comp4_speaker_par <- c(comp4_speaker_pool_temp$Participant[which(comp4_speaker_pool_temp$EarlyTVJ==1)],
+                       comp4_speaker_pool_temp$Participant[which(comp4_speaker_pool_temp$LateTVJ==1)])
+comp4_full_pool <- cbind(comp4_speaker_pool,comp4_speaker_par)
+
+comp5_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==5),]
+comp5_speaker_pool <- c(comp5_speaker_pool_temp$EarlyPrior[which(comp5_speaker_pool_temp$EarlyTVJ==1)],
+                        comp5_speaker_pool_temp$LatePrior[which(comp5_speaker_pool_temp$LateTVJ==1)])
+comp5_speaker_par <- c(comp5_speaker_pool_temp$Participant[which(comp5_speaker_pool_temp$EarlyTVJ==1)],
+                       comp5_speaker_pool_temp$Participant[which(comp5_speaker_pool_temp$LateTVJ==1)])
+comp5_full_pool <- cbind(comp5_speaker_pool,comp5_speaker_par)
+
+comp6_speaker_pool_temp <- OnlineData[which(OnlineData$CompType==6),]
+comp6_speaker_pool <- c(comp6_speaker_pool_temp$EarlyPrior[which(comp6_speaker_pool_temp$EarlyTVJ==1)],
+                        comp6_speaker_pool_temp$LatePrior[which(comp6_speaker_pool_temp$LateTVJ==1)])
+comp6_speaker_par <- c(comp6_speaker_pool_temp$Participant[which(comp6_speaker_pool_temp$EarlyTVJ==1)],
+                       comp6_speaker_pool_temp$Participant[which(comp6_speaker_pool_temp$LateTVJ==1)])
+comp6_full_pool <- cbind(comp6_speaker_pool,comp6_speaker_par)
+
+nPulls = 1000
+comp1_diffs <- matrix(NaN, nrow = nrow(comp1_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp1_full_pool)){
+  temp1_listener_pool <- comp1_speaker_pool_temp[which(comp1_speaker_pool_temp$Participant!=comp1_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+    for(j in 1:nPulls){
+      pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+      temp_pulls[j] <- listener_pool[j]
+    }
+  comp1_diffs[i,] <- temp_pulls-comp1_full_pool[i]
+}
+
+comp2_diffs <- matrix(NaN, nrow = nrow(comp2_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp2_full_pool)){
+  temp1_listener_pool <- comp2_speaker_pool_temp[which(comp2_speaker_pool_temp$Participant!=comp2_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+  for(j in 1:nPulls){
+    pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+    temp_pulls[j] <- listener_pool[j]
+  }
+  comp2_diffs[i,] <- temp_pulls-comp2_full_pool[i]
+}
+
+comp3_diffs <- matrix(NaN, nrow = nrow(comp3_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp3_full_pool)){
+  temp1_listener_pool <- comp3_speaker_pool_temp[which(comp3_speaker_pool_temp$Participant!=comp3_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+  for(j in 1:nPulls){
+    pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+    temp_pulls[j] <- listener_pool[j]
+  }
+  comp3_diffs[i,] <- temp_pulls-comp3_full_pool[i]
+}
+
+comp4_diffs <- matrix(NaN, nrow = nrow(comp4_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp4_full_pool)){
+  temp1_listener_pool <- comp4_speaker_pool_temp[which(comp4_speaker_pool_temp$Participant!=comp4_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+  for(j in 1:nPulls){
+    pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+    temp_pulls[j] <- listener_pool[j]
+  }
+  comp4_diffs[i,] <- temp_pulls-comp4_full_pool[i]
+}
+
+comp5_diffs <- matrix(NaN, nrow = nrow(comp5_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp5_full_pool)){
+  temp1_listener_pool <- comp5_speaker_pool_temp[which(comp5_speaker_pool_temp$Participant!=comp5_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+  for(j in 1:nPulls){
+    pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+    temp_pulls[j] <- listener_pool[j]
+  }
+  comp5_diffs[i,] <- temp_pulls-comp5_full_pool[i]
+}
+
+comp6_diffs <- matrix(NaN, nrow = nrow(comp6_full_pool),ncol = nPulls)
+temp_pulls <- rep(NaN, nPulls)
+for(i in 1:nrow(comp6_full_pool)){
+  temp1_listener_pool <- comp6_speaker_pool_temp[which(comp6_speaker_pool_temp$Participant!=comp6_full_pool[i,2]),]
+  listener_pool <- c(temp1_listener_pool$EarlyResponse[which(temp1_listener_pool$SpeakerEarly==1)],
+                     temp1_listener_pool$LateResponse[which(temp1_listener_pool$SpeakerLate==1)])
+  for(j in 1:nPulls){
+    pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
+    temp_pulls[j] <- listener_pool[j]
+  }
+  comp6_diffs[i,] <- temp_pulls-comp6_full_pool[i]
+}
+
+par(mfrow=c(2,1))
+hist(c(comp1_diffs,comp2_diffs,comp3_diffs,comp4_diffs,comp5_diffs,comp6_diffs),xlim=c(-1,1))
+hist(diff_raw,xlim=c(-1,1))
+
+par(mfrow=c(3,2))
+hist(comp1_diffs)
+hist(comp2_diffs)
+hist(comp3_diffs)
+hist(comp4_diffs)
+hist(comp5_diffs)
+hist(comp6_diffs)
