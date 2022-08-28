@@ -514,7 +514,7 @@ sanity_check_late[1,6]<- mean(comp6_full_pool_late[,1])
 sanity_check_early[4,6] <- length(comp6_speaker_pool_early)
 sanity_check_late[4,6] <- length(comp6_speaker_pool_late)
 
-nPulls = 1000
+nPulls = 100
 comp1_early_diffs_nov <- matrix(NaN, nrow = nrow(comp1_full_pool_early),ncol = nPulls)
 temp_pulls <- rep(NaN, nPulls)
 comp1_listener_pool_temp<- SONAData[which(SONAData$CompType==1),]
@@ -720,12 +720,13 @@ all_nov_diff_desc <- c(mean(all_nov_diff),sd(all_nov_diff))
 
 # Experienced Distance Simulation -----------------------------------------
 
-nPulls = 1000
+nPulls = 100
 comp1_early_diffs_exp <- matrix(NaN, nrow = nrow(comp1_full_pool_early),ncol = nPulls)
 temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp1_full_pool_early)){
   temp_listener_pool <- comp1_speaker_pool_temp[which(comp1_speaker_pool_temp$Participant!=comp1_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)
     for(j in 1:nPulls){
       pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
       temp_pulls[j] <- listener_pool[pull_index]
@@ -738,6 +739,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp1_full_pool_late)){
   temp_listener_pool <- comp1_speaker_pool_temp[which(comp1_speaker_pool_temp$Participant!=comp1_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -750,6 +752,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp2_full_pool_early)){
   temp_listener_pool <- comp2_speaker_pool_temp[which(comp2_speaker_pool_temp$Participant!=comp2_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -762,6 +765,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp2_full_pool_late)){
   temp_listener_pool <- comp2_speaker_pool_temp[which(comp2_speaker_pool_temp$Participant!=comp2_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -774,6 +778,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp3_full_pool_early)){
   temp_listener_pool <- comp3_speaker_pool_temp[which(comp3_speaker_pool_temp$Participant!=comp3_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -786,6 +791,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp3_full_pool_late)){
   temp_listener_pool <- comp3_speaker_pool_temp[which(comp3_speaker_pool_temp$Participant!=comp3_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -798,6 +804,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp4_full_pool_early)){
   temp_listener_pool <- comp4_speaker_pool_temp[which(comp4_speaker_pool_temp$Participant!=comp4_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -810,6 +817,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp4_full_pool_late)){
   temp_listener_pool <- comp4_speaker_pool_temp[which(comp4_speaker_pool_temp$Participant!=comp4_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -822,6 +830,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp5_full_pool_early)){
   temp_listener_pool <- comp5_speaker_pool_temp[which(comp5_speaker_pool_temp$Participant!=comp5_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -834,6 +843,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp5_full_pool_late)){
   temp_listener_pool <- comp5_speaker_pool_temp[which(comp5_speaker_pool_temp$Participant!=comp5_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -846,6 +856,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp6_full_pool_early)){
   temp_listener_pool <- comp6_speaker_pool_temp[which(comp6_speaker_pool_temp$Participant!=comp6_full_pool_early[i,2]),]
   listener_pool <- temp_listener_pool$EarlyResponse[which(temp_listener_pool$SpeakerEarly==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -858,6 +869,7 @@ temp_pulls <- rep(NaN, nPulls)
 for(i in 1:nrow(comp6_full_pool_late)){
   temp_listener_pool <- comp6_speaker_pool_temp[which(comp6_speaker_pool_temp$Participant!=comp6_full_pool_late[i,2]),]
   listener_pool <- temp_listener_pool$LateResponse[which(temp_listener_pool$SpeakerLate==1)]
+  total_interpret_exp <- length(listener_pool)+total_interpret_exp
   for(j in 1:nPulls){
     pull_index <- round(runif(1,min = 1, max = length(listener_pool)),0)
     temp_pulls[j] <- listener_pool[pull_index]
@@ -892,7 +904,7 @@ hist(comp6_late_diffs_exp)
 
 # Range graph -------------------------------------------------------------
 
-range_size <- seq(.000,1,.01)
+range_size <- seq(.000,.7,.01)
 
 range_percent_nov <- range_size
 
@@ -910,20 +922,28 @@ for(i in 1:length(range_size)){
   range_percent_exp[i] <- length(which(temp_lo_exp<range_hi[i]))/length(all_exp_diff)
 }
 
-range_percent_exp <- 1- range_percent_exp
+range_percent_exp <- 1 - range_percent_exp
 range_percent_nov <- 1 - range_percent_nov
 
-plot(x = range_size, y = range_percent_exp,type="l",xlim = c(0,.65),lty=2, col = "blue",
-     lwd = 2,xlab = "Miscommunication Limit", ylab = "Proportion Beyond Limit")
+par(mfrow=c(1,1))
+par(mar = c(3.5, 3, 1, 2))
 
-points(x = range_size, y = range_percent_nov,type="l",col = "red",lty = 3, lwd = 2)
+plot(x = range_size, y = range_percent_exp,type="l",xlim = c(0,.7),lty=2, col = "red",
+     lwd = 2,xlab = " ", ylab = " ",axes = FALSE)
+
+points(x = range_size, y = range_percent_nov,type="l",col = "blue",lty = 3, lwd = 2)
 
 
-legend(.3,.9,legend = c('Experienced Listener','Inexperienced Listener'),
-       lty = c(2,3),lwd = c(2,2),col = c('blue',"red"),
-       cex = 1.2,bty = 'n',
+legend(.36,.9,legend = c('Experienced Listener','Inexperienced Listener'),
+       lty = c(2,3),lwd = c(2,2),col = c('red',"blue"),
+       cex = 1.3,bty = 'n',
        y.intersp = 1)
 
+title(xlab="Miscommunication Limit", line=1.8, cex.lab=1.8)
+title(ylab="Proportion Beyond Limit", line=1.5, cex.lab=1.8)
+
+axis(side=1,pos=0,cex.axis = 1.6,lwd = 2)
+axis(side = 2, pos=0,cex.axis = 1.6,lwd = 2)
 
 # Histograms of diff ------------------------------------------------------
 
@@ -934,8 +954,16 @@ ax <- seq(-.95,1,.05) # Make a neat vector for the breakpoints
 hgA <- hist(all_nov_diff, breaks = ax, plot = FALSE) # Save first histogram data
 hgB <- hist(all_exp_diff, breaks = ax, plot = FALSE) # Save 2nd histogram data
 
-c1 <- rgb(0,0,255,max = 255, alpha = 80, names = "lt.blue")
-c2 <- rgb(255,0,0, max = 255, alpha = 80, names = "lt.pink")
+c1 <- rgb(0,0,1,.4)
+c2 <- rgb(1,0,0,.4)
 
-plot(hgB, col = c2) # Plot 1st histogram using a transparent color
+plot(hgB, col = c2, axes = FALSE, xlab = '', ylab = '', main = '') # Plot 1st histogram using a transparent color
 plot(hgA, col = c1, add = TRUE) # Add 2nd histogram using different color
+
+axis(side=1,pos=.75,cex.axis = 1.6,lwd = 2)
+axis(side = 2, pos=-1,cex.axis = 1.6,lwd = 2,labels = FALSE, tick = FALSE)
+
+legend(.18,80000, c( "Experienced Listener","Inexperienced Listener"), col=c(c2, c1), lwd=10,cex = 1.3,
+       bty = 'n')
+
+title(xlab="Experienced Speaker - Listener", line=1.8, cex.lab=1.8)
