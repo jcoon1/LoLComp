@@ -2,7 +2,7 @@ MainPlot = function(Novice_inf,Novice_emp,Novice_empCon,Expert_inf,Expert_emp,
                     MainTitle,if_legend,leftmost){
   plot(1:6,Expert_inf[1:6,1],ylim = c(0,1),main = MainTitle, xlab = ' ',ylab = '',
        col = rgb(red = 220/255, green = 20/255, blue = 60/255),bty = 'n',xlim = c(.75,6),frame.plot = FALSE,
-       axes = FALSE,cex = 2,lwd =2,pch = 10)
+       axes = FALSE,cex = 2,lwd =2,pch = 10,type = 'n')
   title(ylab="Interpretation ( /100 games)", line=1.5, cex.lab=1.8)
   if(leftmost==0){
     title(xlab="Composition Type", line=1.8, cex.lab=1.8)

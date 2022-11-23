@@ -224,16 +224,22 @@ for(i in 1:nrow(exp_overlay)){
   }
 }
 
-points(x = SONA_descriptives[1,1],y = c(.05),pch = 18,cex = 2.2,lwd =2)
-arrows(x0 = SONA_descriptives[2,1], y0 = c(.05),
-       x1 = SONA_descriptives[3,1], y1 = c(.05),code = 3,
-       lwd = 2, angle = 90, length = .1,lty=1)
+# points(x = SONA_descriptives[1,1],y = c(.05),pch = 18,cex = 2.2,lwd =2)
+# arrows(x0 = SONA_descriptives[2,1], y0 = c(.05),
+#        x1 = SONA_descriptives[3,1], y1 = c(.05),code = 3,
+#        lwd = 2, angle = 90, length = .1,lty=1)
 
-legend(.005,.98,legend = c('Empirical','Inferred',"Naive Interpretation"),
-       pch = c(16,NA,18),lty = c(NA,1,NA),lwd = c(NA,2,2),pt.cex = c(2,NA,2),
-       col = c('black',"black","black"),
+legend(.005,.98,legend = c('Empirical','Inferred'#,"Naive Interpretation"
+                           ),
+       pch = c(16,NA#,18
+               ),lty = c(NA,1#,NA
+                         ),lwd = c(NA,2#,2
+                                   ),pt.cex = c(2,NA#,2
+                                                ),
+       col = c('black',"black"#,"black"
+               ),
        cex = 1.2,bty = 'n',
-       y.intersp = .7)
+       y.intersp = 1)
 
 
 
@@ -928,13 +934,16 @@ range_percent_nov <- 1 - range_percent_nov
 par(mfrow=c(1,1))
 par(mar = c(3.5, 3, 1, 2))
 
+plot(x = range_size, y = range_percent_exp,type="n",xlim = c(0,.7),lty=2, col = "red",
+     lwd = 2,xlab = " ", ylab = " ",axes = FALSE)
+
 plot(x = range_size, y = range_percent_exp,type="l",xlim = c(0,.7),lty=2, col = "red",
      lwd = 2,xlab = " ", ylab = " ",axes = FALSE)
 
 points(x = range_size, y = range_percent_nov,type="l",col = "blue",lty = 3, lwd = 2)
 
 
-legend(.36,.9,legend = c('Experienced Listener','Inexperienced Listener'),
+legend(.36,.9,legend = c('Experienced Listener','Naive Listener'),
        lty = c(2,3),lwd = c(2,2),col = c('red',"blue"),
        cex = 1.3,bty = 'n',
        y.intersp = 1)
@@ -956,6 +965,7 @@ hgB <- hist(all_exp_diff, breaks = ax, plot = FALSE) # Save 2nd histogram data
 
 c1 <- rgb(0,0,1,.4)
 c2 <- rgb(1,0,0,.4)
+c3 <- rgb(0,0,0,0)
 
 plot(hgB, col = c2, axes = FALSE, xlab = '', ylab = '', main = '') # Plot 1st histogram using a transparent color
 plot(hgA, col = c1, add = TRUE) # Add 2nd histogram using different color
@@ -963,7 +973,7 @@ plot(hgA, col = c1, add = TRUE) # Add 2nd histogram using different color
 axis(side=1,pos=.75,cex.axis = 1.6,lwd = 2)
 axis(side = 2, pos=-1,cex.axis = 1.6,lwd = 2,labels = FALSE, tick = FALSE)
 
-legend(.18,80000, c( "Experienced Listener","Inexperienced Listener"), col=c(c2, c1), lwd=10,cex = 1.3,
+legend(.18,8000, c( "Experienced Listener","Naive Listener"), col=c(c2, c1), lwd=10,cex = 1.3,
        bty = 'n')
 
 title(xlab="Experienced Speaker - Listener", line=1.8, cex.lab=1.8)
