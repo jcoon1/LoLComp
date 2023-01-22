@@ -690,13 +690,6 @@ PriorOdds_noviceoverfull <- (1/36)/(1-(1/36))
 BFEarlyOrder_noviceoverfull <- EarlyOrderOdds_noviceoverfull/PriorOdds_noviceoverfull
 BFLateOrder_noviceoverfull <- LateOrderOdds_noviceoverfull/PriorOdds_noviceoverfull
 
-# Posterior predictive accuracy by comp type ------------------------------
-yesEarly_bycomp_expert <- matrix(NaN,nrow=5,ncol=6)
-noEarly_bycomp_expert <- matrix(NaN,nrow=5,ncol=6)
-yesLate_bycomp_expert <- matrix(NaN,nrow=5,ncol=6)
-noLate_bycomp_expert <- matrix(NaN,nrow=5,ncol=6)
-
-
 
 # Plot beta inferences from raw w/ actual data -------------------------------------------
 par(mfrow=c(1,1))

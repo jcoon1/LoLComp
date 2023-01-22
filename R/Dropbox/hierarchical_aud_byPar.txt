@@ -1,0 +1,33 @@
+# Verhulst logistic growth model
+model{
+ betaGrand_exp ~ dnorm(5, 1/20^2)T(0,)
+ alphaGrand_exp ~ dnorm(0,1/2^2)
+ betaGrand_nov ~ dnorm(5, 1/20^2)T(0,)
+ alphaGrand_nov ~ dnorm(0,1/2^2)
+
+alpha_sigma_exp ~ dnorm(0,1/1^2)T(0,)
+beta_sigma_exp ~ dnorm(0,1/10^2)T(0,)
+    for(i in 1:nExp_aud){
+	betaDelta_exp[i] ~ dnorm(0, 1/beta_sigma_exp^2)
+  	alphaDelta_exp[i] ~ dnorm(0, 1/alpha_sigma_exp^2)
+	alpha_exp[i] = alphaGrand_exp + alphaDelta_exp[i]
+	beta_exp[i] = betaGrand_exp + betaDelta_exp[i]
+	   for (j in 1:nReps){
+    		theta_exp[(i-1)*nReps+j] = max(0.01, min(0.99, 1/(1+exp(-beta_exp[i]*(log(p_exp[(i-1)*nReps+j])-log(1-p_exp[(i-1)*nReps+j])-alpha_exp[i])))))
+    		y_exp[(i-1)*nReps+j] ~ dbern(theta_exp[(i-1)*nReps+j])
+ 	   }
+	}
+
+alpha_sigma_nov ~ dnorm(0,1/1^2)T(0,)
+beta_sigma_nov ~ dnorm(0,1/10^2)T(0,)
+    for(i in 1:nNov_aud){
+  	betaDelta_nov[i] ~ dnorm(0, 1/beta_sigma_nov^2)
+  	alphaDelta_nov[i] ~ dnorm(0, 1/alpha_sigma_nov^2)
+	alpha_nov[i] = alphaGrand_nov + alphaDelta_nov[i]
+	beta_nov[i] = betaGrand_nov + betaDelta_nov[i]
+	   for (j in 1:nReps){
+    		theta_nov[(i-1)*nReps+j] = max(0.01, min(0.99, 1/(1+exp(-beta_nov[i]*(log(p_nov[(i-1)*nReps+j])-log(1-p_nov[(i-1)*nReps+j])-alpha_nov[i])))))
+    		y_nov[(i-1)*nReps+j] ~ dbern(theta_nov[(i-1)*nReps+j])
+ 	   }
+	}
+}

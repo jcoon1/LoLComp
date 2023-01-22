@@ -1,0 +1,97 @@
+# LoL Prior --> Interpretation linear mixed effect model
+# Latent mixture allowing for two types of disagreers
+
+
+model{
+	sigma_exp_early ~ dgamma(1.5,2)
+	sigma_con_early ~ dgamma(.5,8)
+	sigma_nov_early ~ dgamma(1.5,2)
+	sigma_exp_late ~ dgamma(1.5,2)
+	sigma_con_late ~ dgamma(.5,8)
+	sigma_nov_late ~ dgamma(1.5,2)
+
+	s_exp_early = pow(sigma_exp_early,-2)
+	s_con_early = pow(sigma_con_early,-2)
+	s_nov_early = pow(sigma_nov_early,-2)
+	s_exp_late = pow(sigma_exp_late,-2)
+	s_con_late = pow(sigma_con_late,-2)
+	s_nov_late = pow(sigma_nov_late,-2)
+	sVec_early = c(s_exp_early, s_con_early)
+	sVec_late = c(s_exp_late, s_con_late)
+
+	mu = rep(.5,nBeta)
+	BETA ~ dmnorm(mu,bPrec)
+	tau ~ dgamma(4,10)
+	t= pow(tau,-2)
+	Phi_disagree ~ dunif(0,1)
+	sigma_phi ~ dgamma(4,10)
+	s_phi = pow(sigma_phi,-2)
+
+  for (i in 1:nExperts){
+	alpha_early[i] ~ dnorm(0,t)
+	alpha_late[i] ~ dnorm(0,t)
+	phi_disagree[i] ~ dnorm(Phi_disagree,s_phi)T(0,1)
+   }
+  
+  for(i in 1:nExperts_agree_early){
+  	for(j in 1:nAgree_early[i]){
+		#index = j + sum(nAgree[1:i]) - nAgree[i]
+
+		Y_agree_early[index_agree_early[i,j]] ~ dnorm(inprod(BETA, X_agree_early14[index_agree_early[i,j],]) 
+		+ alpha_early[Participant_list_agree_early[index_agree_early[i,j]]],s_exp_early)
+  	}
+   }
+
+  for(i in 1:nExperts_agree_late){
+  	for(j in 1:nAgree_late[i]){
+		#index = j + sum(nAgree[1:i]) - nAgree[i]
+
+		Y_agree_late[index_agree_late[i,j]] ~ dnorm(inprod(BETA, X_agree_late14[index_agree_late[i,j],]) 
+		+ alpha_late[Participant_list_agree_late[index_agree_late[i,j]]],s_exp_late)
+  	}
+   }
+
+   for(i in 1:nExperts_disagree_early){
+
+  	for(j in 1:nDisagree_early[i]){
+		#index = j + sum(nDisagree[1:i]) - nDisagree[i]
+
+		psi_disagree_bern_early[index_disagree_early[i,j]] ~ dbern(phi_disagree[Participant_list_disagree_early[index_disagree_early[i,j]]])
+		z1_early[index_disagree_early[i,j]] = equals(psi_disagree_bern_early[index_disagree_early[i,j]],0)
+		z2_early[index_disagree_early[i,j]] = equals(psi_disagree_bern_early[index_disagree_early[i,j]],1)
+
+    		Y_disagree_early[index_disagree_early[i,j]] ~ dnorm((inprod(BETA, X_disagree_early14[index_disagree_early[i,j],])
+		+ alpha_early[Participant_list_disagree_early[index_disagree_early[i,j]]])*z1_early[index_disagree_early[i,j]]
+		+ (Prior_early[index_disagree_early[i,j]]*z2_early[index_disagree_early[i,j]]),
+		inprod(c(z1_early[index_disagree_early[i,j]],z2_early[index_disagree_early[i,j]]),sVec_early))
+	}
+  }
+
+    for(i in 1:nExperts_disagree_late){
+
+  	for(j in 1:nDisagree_late[i]){
+		#index = j + sum(nDisagree[1:i]) - nDisagree[i]
+
+		psi_disagree_bern_late[index_disagree_late[i,j]] ~ dbern(phi_disagree[Participant_list_disagree_late[index_disagree_late[i,j]]])
+		z1_late[index_disagree_late[i,j]] = equals(psi_disagree_bern_late[index_disagree_late[i,j]],0)
+		z2_late[index_disagree_late[i,j]] = equals(psi_disagree_bern_late[index_disagree_late[i,j]],1)
+
+    		Y_disagree_late[index_disagree_late[i,j]] ~ dnorm((inprod(BETA, X_disagree_late14[index_disagree_late[i,j],])
+		+ alpha_late[Participant_list_disagree_late[index_disagree_late[i,j]]])*z1_late[index_disagree_late[i,j]]
+		+ (Prior_late[index_disagree_late[i,j]]*z2_late[index_disagree_late[i,j]]),
+		inprod(c(z1_late[index_disagree_late[i,j]],z2_late[index_disagree_late[i,j]]),sVec_late))
+	}
+  }
+
+  for(m in 1:nNovices){
+	alpha_early[(m + nExperts)] ~ dnorm(0,t)
+	alpha_late[(m + nExperts)] ~ dnorm(0,t)
+
+	for(n in 1:nTrials){
+		Y_nov_early[(n + (m-1)*nTrials)] ~ dnorm(inprod(BETA, X_nov_early14[(n + (m-1)*nTrials),]) + alpha_early[(m + nExperts)],s_nov_early)
+		}
+	for(n in 1:nTrials){
+		Y_nov_late[(n + (m-1)*nTrials)] ~ dnorm(inprod(BETA, X_nov_late14[(n + (m-1)*nTrials),]) + alpha_late[(m + nExperts)],s_nov_late)
+		}
+	}
+}

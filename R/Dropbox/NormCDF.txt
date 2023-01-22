@@ -1,0 +1,10 @@
+model{
+  # Data comes from a bernoulli based on a normal CDF
+  for (i in 1:n){
+	z[i] <- phi((x[i]-mu)/sigma)
+    y[i] ~ dbern(z[i])
+  }
+  # Priors
+  mu ~ dunif(0,1)
+  sigma ~ dunif(0,1)
+}

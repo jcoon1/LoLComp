@@ -1,0 +1,23 @@
+# LoL Comp
+# Linear regression model (split by speaker statement and early vs. late)
+
+
+model{
+
+    	s ~ dgamma(1.5,2)
+	sigma = pow(s,-2)
+	mu = rep(.5,nBeta)
+	BETA ~ dmnorm(mu,bPrec)
+	t ~ dgamma(1.5,2)
+	tau = pow(t,-2)
+
+  for (i in 1:nParticipants){
+
+	alpha[i] ~ dnorm(0,tau)
+	for(j in 1:nTrials){
+		#k = j+((i-1)*nTrials)	
+    		Y[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA, X[j+((i-1)*nTrials),]) + alpha[i],sigma)
+
+	}
+  }
+}

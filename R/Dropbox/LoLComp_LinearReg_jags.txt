@@ -1,0 +1,24 @@
+# LoL Comp
+# Linear miexed-effect model (split by speaker statement and early vs. late)
+
+
+model{
+
+    	sigma ~ dgamma(1.5,2)
+	s = pow(sigma,-2)
+	mu = rep(.5,nBeta)
+	BETA ~ dmnorm(mu,bPrec)
+	tau ~ dgamma(1.5,2)
+	t= pow(tau,-2)
+
+  for (i in 1:nParticipants){
+
+	alpha[i] ~ dnorm(0,t)
+	for(j in 1:nTrials){
+		#k = j+((i-1)*nTrials)	
+    		Y[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA, X[j+((i-1)*nTrials),]) + alpha[i],s)
+		Ypred[j+((i-1)*nTrials)] ~ dnorm(inprod(BETA, X[j+((i-1)*nTrials),]) + alpha[i],s)
+
+	}
+  }
+}

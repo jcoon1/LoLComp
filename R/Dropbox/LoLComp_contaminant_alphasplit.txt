@@ -1,0 +1,61 @@
+# LoL Prior --> Interpretation linear mixed effect model
+# Latent mixture allowing for two types of disagreers
+
+
+model{
+	sigma_exp ~ dgamma(1.5,2)
+	sigma_con ~ dgamma(.5,8)
+	sigma_nov ~ dgamma(1.5,2)
+	s_exp = pow(sigma_exp,-2)
+	s_con = pow(sigma_con,-2)
+	s_nov = pow(sigma_nov,-2)
+	sVec = c(s_exp, s_con)
+
+	mu = rep(.5,nBeta)
+	BETA ~ dmnorm(mu,bPrec)
+	tau_exp ~ dgamma(4,10)
+	t_exp= pow(tau_exp,-2)
+	tau_nov ~ dgamma(4,10)
+	t_nov= pow(tau_nov,-2)
+	phi_disagree ~ dunif(0,1)
+	sigma_psi ~ dgamma(4,10)
+	s_psi = pow(sigma_psi,-2)
+
+  for (i in 1:nExperts){
+	alpha[i] ~ dnorm(0,t_exp)
+	psi_disagree[i] ~ dnorm(phi_disagree,s_psi)T(0,1)
+   }
+  
+  for(i in 1:nExperts_agree){
+  	for(j in 1:nAgree[i]){
+		#index = j + sum(nAgree[1:i]) - nAgree[i]
+
+		Y_agree[index_agree[i,j]] ~ dnorm(inprod(BETA, X_agree[index_agree[i,j],]) 
+		+ alpha[Participant_list_agree[index_agree[i,j]]],s_exp)
+  	}
+   }
+
+   for(i in 1:nExperts_disagree){
+
+  	for(j in 1:nDisagree[i]){
+		#index = j + sum(nDisagree[1:i]) - nDisagree[i]
+
+		psi_disagree_bern[index_disagree[i,j]] ~ dbern(psi_disagree[Participant_list_disagree[index_disagree[i,j]]])
+		z1[index_disagree[i,j]] = equals(psi_disagree_bern[index_disagree[i,j]],0)
+		z2[index_disagree[i,j]] = equals(psi_disagree_bern[index_disagree[i,j]],1)
+
+    		Y_disagree[index_disagree[i,j]] ~ dnorm((inprod(BETA, X_disagree[index_disagree[i,j],]) 		
+		+ alpha[Participant_list_disagree[index_disagree[i,j]]])*z1[index_disagree[i,j]]
+		+ (Prior[index_disagree[i,j]]*z2[index_disagree[i,j]]),
+		inprod(c(z1[index_disagree[i,j]],z2[index_disagree[i,j]]),sVec))
+	}
+  }
+
+  for(m in 1:nNovices){
+	alpha[(m + nExperts)]~ dnorm(0,t_nov)
+
+	for(n in 1:nTrials){
+		Y_nov[(n + (m-1)*nTrials)] ~ dnorm(inprod(BETA, X_nov[(n + (m-1)*nTrials),]) + alpha[(m + nExperts)],s_nov)
+		}
+	}
+}
